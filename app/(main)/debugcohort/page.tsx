@@ -1,11 +1,17 @@
-"use client"
-import { UserButton, useSession } from "@clerk/nextjs"
+import { initialProfile } from "@/lib/initial-profile";
+import { UserButton } from "@clerk/nextjs"
+import { NextResponse } from "next/server";
 
-const DebugCohort = () => {
-  const user = useSession();
+const DebugCohort = async () => {
+  const user = await initialProfile();
+
   console.log(user)
+  
+  if(!user) 
+    return new NextResponse("You are not authorise")
+    
   return (
-    <div><UserButton/></div>
+    <div><UserButton afterSignOutUrl="/"/></div>
   )
 }
 

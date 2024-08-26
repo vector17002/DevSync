@@ -3,7 +3,7 @@ import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/theme-provider";
-import  {dark} from "@clerk/themes"
+import Navbar from "@/components/Navbar";
 
 const inter = Open_Sans({ subsets: ["latin"] });
 
@@ -18,16 +18,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider appearance={{
-      baseTheme: dark,
-    }}>
+    <ClerkProvider>
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/assets/logo-final.png"/>
+      </head>
       <body className={inter.className}>
         <ThemeProvider 
             attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange>
+            defaultTheme="light"
+            enableColorScheme>
+          <Navbar/>
           {children}
         </ThemeProvider>
         </body>

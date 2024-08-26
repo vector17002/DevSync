@@ -5,7 +5,6 @@ import { eq } from "drizzle-orm";
 
 export const initialProfile = async () =>{
     const user = await currentUser();
-    console.log(user)
 
     if(!user)
         return redirectToSignIn();
@@ -16,14 +15,18 @@ export const initialProfile = async () =>{
 
      if(!profile){
         try{
+        const githubDetails = user.externalAccounts.filter((details) => {
+            return details.provider === "oauth_github"
+        })
+        const githubUrl = `https://github.com/${githubDetails[0].username}`
         const newProfile = await db.insert(userTable).values({
             //@ts-ignore
             id: user.id,
             image_url: user.imageUrl,
             email: user.primaryEmailAddress?.emailAddress,
             name: user.fullName,
-            githubId: `https://github.com/${user.externalAccounts[0].username}`,
-            githubImageUrl: user.externalAccounts[0].imageUrl
+            githubId: githubUrl,
+            githubImageUrl: githubDetails[0].imageUrl
         }).returning().onConflictDoNothing();
 
         return newProfile;

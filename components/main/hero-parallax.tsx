@@ -9,6 +9,7 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 export const HeroParallax = ({
   products,
@@ -93,7 +94,7 @@ export const HeroParallax = ({
 
 export const Header = () => {
   return (
-    <div className="max-w-7xl relative mx-auto py-20 md:py-30 px-4 w-full left-0 top-0">
+    <div className="max-w-7xl relative mx-auto py-20 md:py-30 px-4 w-full left-0 top-0 absolute">
       <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
         The Ultimate <br /> collaborators hub
       </h1>

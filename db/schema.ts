@@ -15,17 +15,27 @@ export const projectTable = pgTable("Projects",{
    id: uuid("id").primaryKey().notNull().defaultRandom(),
    name: varchar("name",{length: 255}).notNull(),
    hostId: varchar("hostId").references(() => userTable.id, { onDelete: "cascade"}).notNull(),
-   githubId: varchar("githubId").default("").notNull(),
+   githubRepo: varchar("githubRepo").default("").notNull(),
    details: varchar("details", {length: 200}).default(""),
    status: varchar("status").$type<"compeleted" | "not-completed" | "on-going">().$default(() => "not-completed"),
    inviteUrl: varchar("inviteUrl").notNull(),
 })
 
+export const sessionTable = pgTable("Sessions" , {
+   id: uuid("id").primaryKey().notNull().defaultRandom(),
+   name: varchar("name",{length: 255}).notNull(),
+   hostId: varchar("hostId").references(() => userTable.id, { onDelete: "cascade"}).notNull(),
+   githubRepo: varchar("githubRepo").default("").notNull(),
+   details: varchar("details", {length: 200}).default(""),
+   status: varchar("status").$type<"compeleted" | "not-completed" | "on-going">().$default(() => "not-completed"),
+   inviteUrl: varchar("inviteUrl").notNull().default(""),
+})
 
 // relations
 export const userRelations = relations(userTable ,  ({many}) => (
    {
-      projectsId: many(projectTable)
+      projectsId: many(projectTable),
+      sessionId: many(sessionTable)
    }
 ))
 
@@ -34,6 +44,20 @@ export const projectRelations = relations(projectTable, ({one , many}) => ({
       fields: [projectTable.hostId],
       references: [userTable.id]
    }),
-   waitingCollaborators : many(userTable)
+   waitingCollaborators : many(userTable),
+   collaborators: many(userTable)
 }))
 
+export const sessionRelations = relations(sessionTable,({one,many}) => ({
+   hostId: one(userTable,{
+      fields: [sessionTable.hostId],
+      references: [userTable.id]
+   }),
+   collaborators: many(userTable)
+}))
+
+
+// types
+export type UserTableType = typeof userTable.$inferInsert
+export type ProjectTableType = typeof projectTable.$inferInsert
+export type SessionTableType = typeof sessionTable.$inferInsert

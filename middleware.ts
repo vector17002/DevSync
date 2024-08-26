@@ -6,6 +6,7 @@ import {
 const isProtectedRoute = createRouteMatcher([
   '/debugcohort(.*)',
   '/devpals(.*)',
+  '/create-session(.*)'
 ]);
 
 export default clerkMiddleware((auth, req) => {

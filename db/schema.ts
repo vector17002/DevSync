@@ -1,5 +1,5 @@
-import { relations } from "drizzle-orm";
-import { pgTable, uuid, varchar } from "drizzle-orm/pg-core";
+import { relations, sql } from "drizzle-orm";
+import { pgTable, uuid, varchar, date, text } from "drizzle-orm/pg-core";
 
 export const userTable = pgTable("Users",{
    id: varchar("id").primaryKey().notNull(),
@@ -8,7 +8,8 @@ export const userTable = pgTable("Users",{
    image_url: varchar("imageUrl").notNull().default(""),
    bio: varchar("bio", {length: 500}).default(""),
    githubId: varchar("githubId").default(""),
-   githubImageUrl : varchar("githubImageurl").default("")
+   githubImageUrl : varchar("githubImageurl").default(""),
+   skills: text("skills").default(""),
 })
 
 export const projectTable = pgTable("Projects",{
@@ -18,7 +19,8 @@ export const projectTable = pgTable("Projects",{
    githubRepo: varchar("githubRepo").default("").notNull(),
    details: varchar("details", {length: 200}).default(""),
    status: varchar("status").$type<"compeleted" | "not-completed" | "on-going">().$default(() => "not-completed"),
-   inviteUrl: varchar("inviteUrl").notNull(),
+   inviteUrl: varchar("inviteUrl").default(""),
+   skills: text("skills").default(""),
 })
 
 export const sessionTable = pgTable("Sessions" , {
@@ -27,8 +29,11 @@ export const sessionTable = pgTable("Sessions" , {
    hostId: varchar("hostId").references(() => userTable.id, { onDelete: "cascade"}).notNull(),
    githubRepo: varchar("githubRepo").default("").notNull(),
    details: varchar("details", {length: 200}).default(""),
-   status: varchar("status").$type<"compeleted" | "not-completed" | "on-going">().$default(() => "not-completed"),
-   inviteUrl: varchar("inviteUrl").notNull().default(""),
+   status: varchar("status").$type<"compeleted" | "not-completed" | "on-going">().$default(() => "on-going"),
+   inviteUrl: varchar("inviteUrl").default(""),
+   skills: text("skills").default(""),
+   startAt: date("startAt").defaultNow(),
+   endedAt: date("endedAt"),
 })
 
 // relations

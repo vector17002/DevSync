@@ -1,0 +1,1 @@
+ALTER TABLE "Sessions" ALTER COLUMN "endedAt" SET DATA TYPE date;

@@ -1,5 +1,5 @@
 {
-  "id": "f440e40d-92e4-450e-a7aa-fd6e81142240",
+  "id": "5f09c3f7-3980-4cef-ba80-f1c5bbb092c3",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -27,8 +27,8 @@
           "primaryKey": false,
           "notNull": true
         },
-        "githubId": {
-          "name": "githubId",
+        "githubRepo": {
+          "name": "githubRepo",
           "type": "varchar",
           "primaryKey": false,
           "notNull": true,
@@ -51,7 +51,15 @@
           "name": "inviteUrl",
           "type": "varchar",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false,
+          "default": "''"
+        },
+        "skills": {
+          "name": "skills",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "ARRAY[]::text[]"
         }
       },
       "indexes": {},
@@ -59,6 +67,96 @@
         "Projects_hostId_Users_id_fk": {
           "name": "Projects_hostId_Users_id_fk",
           "tableFrom": "Projects",
+          "tableTo": "Users",
+          "columnsFrom": [
+            "hostId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.Sessions": {
+      "name": "Sessions",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hostId": {
+          "name": "hostId",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "githubRepo": {
+          "name": "githubRepo",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "''"
+        },
+        "details": {
+          "name": "details",
+          "type": "varchar(200)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "''"
+        },
+        "status": {
+          "name": "status",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "inviteUrl": {
+          "name": "inviteUrl",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "''"
+        },
+        "skills": {
+          "name": "skills",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "ARRAY[]::text[]"
+        },
+        "startAt": {
+          "name": "startAt",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "endedAt": {
+          "name": "endedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Sessions_hostId_Users_id_fk": {
+          "name": "Sessions_hostId_Users_id_fk",
+          "tableFrom": "Sessions",
           "tableTo": "Users",
           "columnsFrom": [
             "hostId"
@@ -85,13 +183,13 @@
         },
         "name": {
           "name": "name",
-          "type": "varchar(255)",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": true
         },
         "email": {
           "name": "email",
-          "type": "varchar(255)",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": true
         },
@@ -122,6 +220,13 @@
           "primaryKey": false,
           "notNull": false,
           "default": "''"
+        },
+        "skills": {
+          "name": "skills",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "ARRAY[]::text[]"
         }
       },
       "indexes": {},

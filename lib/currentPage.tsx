@@ -3,11 +3,12 @@
 import Link from "next/link"
 import {usePathname } from "next/navigation"
 import { Button } from "../components/ui/button"
+import CustomButton from "@/components/custombutton"
 
-const CurrentPage = async () =>{
-    const path = await usePathname()
+const CurrentPage = () =>{
+    const path = usePathname()
     const pathToshow = path === "/" ? "/debugcohort" : path === "/debugcohort" ? "/devpals" : "/debugcohort";
-    const elementToshow = pathToshow === "/debugcohort" && path === "/" ? "Get started" : pathToshow === "/debugcohort" ? "Debug Cohort" : "Dev Pals";
+    const elementToshow = pathToshow === "/debugcohort" && path === "/" ? "Get started" : pathToshow === "/debugcohort" ? "Sessions" : "Projects";
 
     return (
        <Link href={`${pathToshow}`}>
@@ -15,6 +16,7 @@ const CurrentPage = async () =>{
             {elementToshow}
         </Button>
        </Link>
+    //    <CustomButton value={elementToshow} link={pathToshow}/>
     )
 }
 export default CurrentPage

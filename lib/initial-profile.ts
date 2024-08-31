@@ -18,15 +18,19 @@ export const initialProfile = async () =>{
         const githubDetails = user.externalAccounts.filter((details) => {
             return details.provider === "oauth_github"
         })
-        const githubUrl = `https://github.com/${githubDetails[0].username}`
+
+        let githubUrl = '';
+        if(githubDetails)
+        githubUrl = `https://github.com/${githubDetails[0]?.username}`
+
         const newProfile = await db.insert(userTable).values({
             //@ts-ignore
             id: user.id,
             image_url: user.imageUrl,
             email: user.primaryEmailAddress?.emailAddress,
             name: user.fullName,
-            githubId: githubUrl,
-            githubImageUrl: githubDetails[0].imageUrl
+            githubId: githubUrl !== '' ? githubUrl : "",
+            githubImageUrl: githubDetails[0]?.imageUrl
         }).returning().onConflictDoNothing();
 
         return newProfile;

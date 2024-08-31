@@ -1,1 +1,0 @@
-ALTER TABLE "Sessions" ALTER COLUMN "inviteUrl" SET DEFAULT '';

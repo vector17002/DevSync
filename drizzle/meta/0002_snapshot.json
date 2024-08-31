@@ -1,6 +1,6 @@
 {
-  "id": "0b4e8db7-af15-4394-9acf-5971eddad0d1",
-  "prevId": "04ec9c48-85f9-4885-aa28-2fcf03676199",
+  "id": "481823fd-cc44-4dd6-8036-348050922cbf",
+  "prevId": "e53b1e61-a950-4e18-bf96-505a7e6bfdb0",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -51,7 +51,15 @@
           "name": "inviteUrl",
           "type": "varchar",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false,
+          "default": "''"
+        },
+        "skills": {
+          "name": "skills",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "''"
         }
       },
       "indexes": {},
@@ -120,7 +128,28 @@
           "name": "inviteUrl",
           "type": "varchar",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false,
+          "default": "''"
+        },
+        "skills": {
+          "name": "skills",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "''"
+        },
+        "startAt": {
+          "name": "startAt",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "endedAt": {
+          "name": "endedAt",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
@@ -188,6 +217,13 @@
         "githubImageurl": {
           "name": "githubImageurl",
           "type": "varchar",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "''"
+        },
+        "skills": {
+          "name": "skills",
+          "type": "text",
           "primaryKey": false,
           "notNull": false,
           "default": "''"

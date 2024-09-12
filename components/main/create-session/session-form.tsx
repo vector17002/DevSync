@@ -63,15 +63,6 @@ const formSchema = z.object({
      
       async function onSubmit(values: z.infer<typeof formSchema>)  {
         await createSessionAction(values)
-        console.log(values)
-        toast({
-          title: "You submitted the following values:",
-          description: (
-            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-              <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-            </pre>
-          ),
-        })
         router.push('/debugcohort')
       }
     return(
@@ -99,7 +90,7 @@ const formSchema = z.object({
               <FormControl className="text-slate-500 dark:text-slate-300">
                 <Input placeholder="Description" {...field} className="rounded-xl"/>
               </FormControl>
-              <FormDescription>Please give a breif  description of your project</FormDescription>
+              <FormDescription>Please give a brief description of your project and the bug you are facing</FormDescription>
               <FormMessage className="text-rose-400"/>
             </FormItem>
           )}

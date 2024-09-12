@@ -1,6 +1,9 @@
 
+import { db } from '@/db/migrate'
 import VideoPlayer from './videoplayer'
 import { initialProfile } from '@/lib/initial-profile'
+import { sessionTable } from '@/db/schema'
+import { eq } from 'drizzle-orm'
 
 const SessionPage = async (props : {params : {sessionId : string}}) => {
   const user = await initialProfile()
@@ -8,14 +11,12 @@ const SessionPage = async (props : {params : {sessionId : string}}) => {
   if(!user)
      throw new Error('You are not authorized')
 
-  //@ts-ignore
-  const userId = user.id
-
   const sessionId = props.params.sessionId
+  const session = db.query.sessionTable.findFirst({
+    where: eq(sessionTable.id, sessionId)
+  })
   return (
-    <div className='w-full'>
-      <VideoPlayer sessionId={sessionId} userId={userId}/>
-    </div>
+      <VideoPlayer session={session} user={user}/>
   )
 }
 

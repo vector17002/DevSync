@@ -39,7 +39,6 @@ const MultiCard = ({data} : {data  : SessionTableType}) => {
     <ParticipantsBagde item={data.hostId} designation={'Host'}/>
   </CardFooter>
 </Card>
-
   )
 }
 

@@ -2,6 +2,7 @@
 import {
     Call,
     CallControls,
+    CallParticipantsList,
     SpeakerLayout,
     StreamCall,
     StreamTheme,
@@ -11,39 +12,63 @@ import {
 import { useEffect, useState } from 'react';
 import "@stream-io/video-react-sdk/dist/css/styles.css"
 import {generateToken } from './action';
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
 
 const apiKey = process.env.GET_STREAM_API_KEY!;
 
-  const VideoPlayer = ({sessionId , userId} : {sessionId: string , userId : string}) => {
+  const VideoPlayer = ({session , user} : {session: any , user : any}) => {
     const [client, setClient] = useState<StreamVideoClient | null>(null)
     const [call, setCall] = useState<Call | null>(null)
+    const [showParticipants, setShowParticipants] = useState<boolean>(false)
+    const router = useRouter()
   useEffect(() => {
     const client = new StreamVideoClient({ 
       apiKey : apiKey,
        user : {
-      id: userId
+      id: user.id,
+      name: user.name,
+      image: user.image_url
     },
     tokenProvider: () => generateToken() 
   });
     setClient(client)
-    const call = client?.call('default', sessionId)
+    
+    const call = client?.call('default', session?.id)
     call?.join({create: true});
     setCall(call)
     
     return() => {
-        call.leave()
         client.disconnectUser()
     }
-    } , [userId , sessionId])
+    } , [user , session])
     return (
-      client && call && <StreamVideo client={client}>
-        <StreamTheme>
+      client && call && 
+      <StreamTheme>
+      <div className='w-full text-white'>
+      <StreamVideo client={client}>
         <StreamCall call={call}>
           <SpeakerLayout/>
-          <CallControls/>
+          <CallControls onLeave={() => {
+            router.push('/debugcohort')
+          }}/>
+         {showParticipants && ( <div className='justify-center flex text-slate-400 mt-5'>
+          <CallParticipantsList 
+          onClose={() => setShowParticipants(!showParticipants)}/>
+          </div>)}
+          {!showParticipants && (
+            <div className='flex items-center justify-center mt-5'>
+            <Button onClick={() => {
+              setShowParticipants(!showParticipants)
+            }} className='dark:text-black dark:bg-white text-white bg-black hover:text-black dark:hover:text-white dark:hover:bg-black rounded-xl'>
+              Participants
+            </Button>
+            </div>
+          )}
         </StreamCall>
-        </StreamTheme>
       </StreamVideo>
+      </div>
+      </StreamTheme>
     );
   };
   export default VideoPlayer

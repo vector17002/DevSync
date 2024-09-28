@@ -1,5 +1,8 @@
 'use server'
+import { db } from '@/db/migrate';
+import { sessionTable } from '@/db/schema';
 import { initialProfile } from '@/lib/initial-profile';
+import { eq } from 'drizzle-orm';
 import { StreamChat } from 'stream-chat'
 
 export async function  generateToken (){
@@ -16,4 +19,8 @@ const serverClient = StreamChat.getInstance(api_key, api_secret)
 const token = serverClient.createToken(user?.id)
 
 return token
+}
+
+export async function deleteSession(sessionId: string) {
+    await db.delete(sessionTable).where(eq(sessionTable.id, sessionId))
 }

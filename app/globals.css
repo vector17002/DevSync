@@ -6,11 +6,16 @@
  margin: 0px;
  padding: 0px;
  box-sizing: border-box;
+ -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+ scrollbar-width: none;  
 }
 
-body{-webkit-user-select:none;
+body{
+  -webkit-user-select:none;
   -moz-user-select:-moz-none;
-  -ms-user-select:none;user-select:none
+  -ms-user-select:none;
+  user-select:none;
+ 
 }
 
 .main {

@@ -1,4 +1,3 @@
-//@ts-nocheck
 import {
     Card,
     CardContent,
@@ -18,7 +17,7 @@ import ParticipantsBagde from "./ui/participants"
 const MultiCard = ({data} : {data  : SessionTableType}) => {
   const tags = data.skills?.toLowerCase().split(',')
   return (
-<Card className="min-w-[20vw] h-[40vh] flex flex-col justify-between">
+<Card className="min-w-[22vw] h-[40vh] flex flex-col justify-between">
   <CardHeader>
     <CardTitle className="text-xl font-bold">{data.name}</CardTitle>
     <CardDescription>{data.details}</CardDescription>
@@ -29,13 +28,15 @@ const MultiCard = ({data} : {data  : SessionTableType}) => {
       <Badge className="bg-black text-white p-1 px-2 rounded-xl hover:bg-white hover:text-black dark:bg-white dark:text-black" key={tag}>{tag}</Badge>
     ))}
     </div>
-    <Link href={data.githubRepo} className="font-semibold flex hover:text-blue-300 text-xs">
+    <Link 
+    //@ts-ignore 
+    href={data.githubRepo} className="font-semibold flex hover:text-blue-300 text-xs" target="_blank">
     <GithubIcon className="w-4 h-4"/>
      Github
     </Link>
   </CardContent>
   <CardFooter className="flex items-center gap-2 text-xs">
-    <CustomButton value="Join now" link={`/session/${data.id}`}/>
+    <CustomButton value="Join" link={`/session/${data.id}`} className={""}/>
     <ParticipantsBagde item={data.hostId} designation={'Host'}/>
   </CardFooter>
 </Card>

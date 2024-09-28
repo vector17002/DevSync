@@ -17,7 +17,7 @@ import { Button } from '@/components/ui/button';
 
 const apiKey = process.env.GET_STREAM_API_KEY!;
 
-  const VideoPlayer = ({session , user} : {session: any , user : any}) => {
+  const VideoPlayer = ({sessionId , user} : {sessionId : string , user : any}) => {
     const [client, setClient] = useState<StreamVideoClient | null>(null)
     const [call, setCall] = useState<Call | null>(null)
     const [showParticipants, setShowParticipants] = useState<boolean>(false)
@@ -34,16 +34,17 @@ const apiKey = process.env.GET_STREAM_API_KEY!;
   });
     setClient(client)
     
-    const call = client?.call('default', session?.id)
+    const call = client?.call('default', sessionId)
     call?.join({create: true});
     setCall(call)
     
     return() => {
         client.disconnectUser()
     }
-    } , [user , session])
+    } , [user , sessionId])
     return (
-      client && call && 
+      <div className='w-full mb-10'>
+      {client && call &&
       <StreamTheme>
       <div className='w-full text-white'>
       <StreamVideo client={client}>
@@ -68,7 +69,8 @@ const apiKey = process.env.GET_STREAM_API_KEY!;
         </StreamCall>
       </StreamVideo>
       </div>
-      </StreamTheme>
+      </StreamTheme>}
+      </div>
     );
   };
   export default VideoPlayer

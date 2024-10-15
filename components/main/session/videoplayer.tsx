@@ -11,7 +11,7 @@ import {
   } from '@stream-io/video-react-sdk';
 import { useEffect, useState } from 'react';
 import "@stream-io/video-react-sdk/dist/css/styles.css"
-import {generateToken } from './action';
+import {generateToken } from '../../../app/(main)/session/[sessionId]/action';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 

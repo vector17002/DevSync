@@ -99,8 +99,8 @@ export const Header = () => {
         The Ultimate <br /> collaborators hub
       </h1>
       <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200 font-semibold">
-        We are here for connecting developers around the globe and help
-        them to achieve exellence in software development by working on ideas 
+        Connecting developers around the globe and help
+        them to achieve exellence by working on ideas 
         together.
       </p>
     </div>

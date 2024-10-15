@@ -37,8 +37,7 @@ const DebugCohort = async () => {
       </div> 
     <div className="w-4/5 h-full flex items-center mt-10 gap-5 overflow-x-scroll scroll-smooth">
       {sessions.map((session) => (
-      //@ts-ignore
-      <MultiCard key={session.id} data={session}/>
+      <MultiCard key={session.id} data={session} user={user} />
       ))}
     </div>
     </div>

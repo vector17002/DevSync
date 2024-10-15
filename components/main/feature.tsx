@@ -41,7 +41,7 @@ export const features = [
     },
     {
       title: "And everything else",
-      description: "Everything else that a starting open source SASS product provides you.",
+      description: "Everything else that an initial SASS product provides you.",
       icon: <IconHeart />,
     },
 ];

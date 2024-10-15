@@ -1,5 +1,5 @@
 import { db } from '@/db/migrate'
-import VideoPlayer from './videoplayer'
+import VideoPlayer from '../../../../components/main/session/videoplayer'
 import { initialProfile } from '@/lib/initial-profile'
 import { sessionTable } from '@/db/schema'
 import { eq } from 'drizzle-orm'

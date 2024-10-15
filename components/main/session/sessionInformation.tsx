@@ -23,6 +23,7 @@ const SessionInformation = async ({session} : {session : any}) => {
       <Badge className="bg-black text-white p-1 px-2 rounded-xl hover:bg-white hover:text-black dark:bg-white dark:text-black" key={tag}>{tag}</Badge>
     ))}
     </div>
+    <div className="flex gap-5 items-center w-full">
     <Link href={session.githubRepo} className="font-semibold flex hover:text-blue-300 text-xs" target="_blank">
     <GithubIcon className="w-4 h-4"/>
      Github
@@ -33,6 +34,7 @@ const SessionInformation = async ({session} : {session : any}) => {
       <EditDelete sessionId={session.id}/>
     )
     }
+    </div>
   </CardContent>
 </Card>
   )

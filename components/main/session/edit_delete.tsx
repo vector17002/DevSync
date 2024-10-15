@@ -1,6 +1,6 @@
 'use client'
 import { Button } from '@/components/ui/button'
-import { TrashIcon } from 'lucide-react'
+import { Edit, EditIcon, TrashIcon } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import {
@@ -19,16 +19,16 @@ import { useRouter } from 'next/navigation'
 const EditDelete = ({sessionId } : {sessionId : string}) => {
     const router = useRouter()
   return (
-    <div className="flex justify-between gap-5">
+    <div className="flex gap-5">
     <Link href={`/session/${sessionId}/edit`} className="w-full">
-    <Button className="w-full rounded-xl">
-      Edit
+    <Button className="rounded-xl glassmorphism-inset-shadow">
+      <EditIcon className='w-4 h-4'/>
     </Button>
     </Link>
     <AlertDialog >
       <AlertDialogTrigger asChild>
-      <Button className="bg-rose-500 rounded-xl text-white font-bold hover:text-red-500 gap-2"> 
-        <TrashIcon/> Delete 
+      <Button className="bg-rose-500 rounded-xl text-white hover:text-red-500"> 
+        <TrashIcon className='w-4 h-4'/>
     </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className='bg-white dark:bg-black p-5'>

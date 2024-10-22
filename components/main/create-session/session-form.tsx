@@ -16,20 +16,6 @@ import {
 import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation"
 import { createSessionAction } from "@/app/(main)/create-session/action"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Calendar } from "@/components/ui/calendar"
-import { cn } from "@/lib/utils"
-import { CalendarIcon } from "lucide-react"
-import { toast } from "@/components/ui/use-toast"
-import { format } from "date-fns"
-
-
-const dateSchema = z.string().refine((val) => {
-  return !isNaN(Date.parse(val)); // Checks if the string can be parsed as a valid date
-}, {
-  message: "Invalid date format",
-});
-
 
 const formSchema = z.object({
    name: z.string().min(2, {
@@ -123,49 +109,6 @@ const formSchema = z.object({
             </FormItem>
           )}
         />
-        {/* <FormField
-          control={form.control}
-          name="startAt"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Start date</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-[240px] pl-3 text-left font-normal",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value ? (
-                        format(field.value , "PPP")
-                      ) : (
-                        <span>Pick start date</span>
-                      )}
-                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    initialFocus
-                    disabled={(date) => date < new Date()}
-                    className="bg-white"
-                  />
-                </PopoverContent>
-              </Popover>
-              <FormDescription>
-                Schedule your session for future
-              </FormDescription>
-              <FormMessage className="text-rose-400"/>
-            </FormItem>
-          )}
-        /> */}
         <Button type="submit" className="px-4 rounded-xl dark:text-white dark:bg-black font-bold  hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black dark:border-slate-500 border-2">Submit</Button>
       </form>
     </Form>

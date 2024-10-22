@@ -9,7 +9,7 @@ import NextTopLoader from 'nextjs-toploader';
 const inter = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Bug Busters",
+  title: "Dev Sync",
   description: "Find amazing debuggers and collaborators for your projects and interact with them through video meet",
 };
 
@@ -22,7 +22,7 @@ export default function RootLayout({
     <ClerkProvider>
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/assets/logofinal.png"/>
+        <link rel="icon" href="/assets/icon.png"/>
       </head>
       <body className={inter.className} >
         <ThemeProvider 

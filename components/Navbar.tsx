@@ -13,11 +13,18 @@ const Navbar = async () => {
   return (
     <div className="flex w-full justify-between px-10 py-2 bg-slate-50 dark:bg-gray-950">
         <Link href={"/"} >
-          <Image src="/assets/logofinal.png" height={80} width={60} className="rounded-full" alt={"logo"}/>
+         <div className="dark:flex hidden">
+          <Image src="/assets/image.png" height={180} width={200} className="rounded-full" alt={"logo"}/>
+          </div>
+          <div className="visible dark:hidden">
+          <Image src="/assets/logofinall.png" height={180} width={200} className="rounded-full" alt={"logo"}/>
+          </div>
         </Link>
         <div className="flex flex-row gap-5 justify-center items-center">
         <ModeToggle/>
-        <CurrentPage/>
+        <CurrentPage 
+        //@ts-ignore
+        userId={user.id}/>
         <Link href={"/debugcohort"} >
           <div className={cn(user ? 'w-full' : 'hidden')}>
           <div className="dark:hidden w-full rounded-xl p-1">

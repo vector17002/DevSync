@@ -16,15 +16,12 @@ import {
  } from "@/components/ui/alert-dialog"
 import { deleteSession } from '@/app/(main)/session/[sessionId]/action'
 import { useRouter } from 'next/navigation'
+import { EditDialogue } from './edit-dailogue'
 const EditDelete = ({sessionId } : {sessionId : string}) => {
     const router = useRouter()
   return (
     <div className="flex gap-5">
-    <Link href={`/session/${sessionId}/edit`} className="w-full">
-    <Button className="rounded-xl glassmorphism-inset-shadow">
-      <EditIcon className='w-4 h-4'/>
-    </Button>
-    </Link>
+    <EditDialogue sessionId={sessionId} />
     <AlertDialog >
       <AlertDialogTrigger asChild>
       <Button className="bg-rose-500 rounded-xl text-white hover:text-red-500"> 

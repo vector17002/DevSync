@@ -14,3 +14,7 @@ export async function createSessionAction(session : Omit<SessionTableType , "hos
     await db.insert(sessionTable).values({...session , hostId : user.id})
     revalidatePath("/debugcohort")
 }
+
+export async function updateSessionAction(sessionId : string, session : Partial<SessionTableType>){
+    
+}

@@ -1,7 +1,6 @@
 'use client'
 import { Button } from '@/components/ui/button'
-import { Edit, EditIcon, TrashIcon } from 'lucide-react'
-import Link from 'next/link'
+import { Edit, TrashIcon } from 'lucide-react'
 import React from 'react'
 import {
     AlertDialog,
@@ -16,15 +15,17 @@ import {
  } from "@/components/ui/alert-dialog"
 import { deleteSession } from '@/app/(main)/session/[sessionId]/action'
 import { useRouter } from 'next/navigation'
-import { EditDialogue } from './edit-dailogue'
+import Link from 'next/link'
 const EditDelete = ({sessionId } : {sessionId : string}) => {
     const router = useRouter()
   return (
     <div className="flex gap-5">
-    <EditDialogue sessionId={sessionId} />
+    <Link href={`/edit-session/${sessionId}`}>
+    <Button size="icon" variant="outline" className="rounded-xl"> <Edit className="w-4 h-4"/> </Button>
+    </Link>
     <AlertDialog >
       <AlertDialogTrigger asChild>
-      <Button className="bg-rose-500 rounded-xl text-white hover:text-red-500"> 
+      <Button className="bg-rose-500 rounded-xl text-white hover:text-red-500" size="icon"> 
         <TrashIcon className='w-4 h-4'/>
     </Button>
       </AlertDialogTrigger>

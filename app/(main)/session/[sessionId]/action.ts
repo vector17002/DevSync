@@ -2,6 +2,7 @@
 import { db } from '@/db/migrate';
 import { sessionTable } from '@/db/schema';
 import { initialProfile } from '@/lib/initial-profile';
+import { resolveNs } from 'dns/promises';
 import { eq } from 'drizzle-orm';
 import { StreamChat } from 'stream-chat'
 

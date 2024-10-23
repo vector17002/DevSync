@@ -5,7 +5,6 @@ import {
 
 const isProtectedRoute = createRouteMatcher([
   '/debugcohort(.*)',
-  '/devpals(.*)',
   '/create-session(.*)',
   '/session(.*)',
 ]);

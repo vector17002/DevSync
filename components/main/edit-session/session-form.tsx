@@ -1,19 +1,9 @@
-import { Button } from "@/components/ui/button"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
+"use client"
 
-import { Edit } from "lucide-react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -23,25 +13,30 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { useRouter } from "next/navigation"
+import { Input } from "@/components/ui/input"
+import { useParams, useRouter } from "next/navigation"
+import { createSessionAction } from "@/app/(main)/create-session/action"
 
 const formSchema = z.object({
-    name: z.string().min(2, {
-     message: "Name must be at least 2 characters.",
-   }).max(50, {
-     message: "Name should be of max 50 characters"
-   }),
-   details:z.string().min(2, {
-     message: "Name must be at least 2 characters.",
-   }).max(200, {
-     message: "Name should be of max 50 characters"
-   }), 
-   githubRepo: z.string(),
-   skills: z.string()
- })
-
-export function EditDialogue({sessionId} : {sessionId: string}) {
+   name: z.string().min(2, {
+    message: "Name must be at least 2 characters.",
+  }).max(50, {
+    message: "Name should be of max 50 characters"
+  }),
+  details:z.string().min(2, {
+    message: "Name must be at least 2 characters.",
+  }).max(200, {
+    message: "Name should be of max 50 characters"
+  }), 
+  githubRepo: z.string(),
+  skills: z.string(),
+  // startAt: z.string().date(),
+  // endAt: z.string().date()
+})
+ const SessionForm = () => {    
     const router = useRouter()
+    const {sessionId} = useParams()
+    console.log(sessionId)
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -55,23 +50,12 @@ export function EditDialogue({sessionId} : {sessionId: string}) {
       })
      
       async function onSubmit(values: z.infer<typeof formSchema>)  {
-        
+        await createSessionAction(values)
         router.push('/debugcohort')
       }
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline" className="rounded-xl"> <Edit className="w-4 h-4"/> </Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] md:max-w-[700px] bg-white dark:bg-black rounded-xl">
-        <DialogHeader>
-          <DialogTitle className="font-semibold text-2xl">Edit Session</DialogTitle>
-          <DialogDescription>
-            Make changes to your session here. Click update when you're done.
-          </DialogDescription>
-        </DialogHeader>
-        <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="bg-white dark:bg-black w-full h-full space-y-5">
+    return(
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 w-3/5 mt-10 mb-10">
         <FormField
           control={form.control}
           name="name"
@@ -127,12 +111,10 @@ export function EditDialogue({sessionId} : {sessionId: string}) {
             </FormItem>
           )}
         />
-        <DialogFooter>
         <Button type="submit" className="px-4 rounded-xl dark:text-white dark:bg-black font-bold  hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black dark:border-slate-500 border-2">Submit</Button>
-        </DialogFooter>
       </form>
-        </Form>
-      </DialogContent>
-    </Dialog>
-  )
+    </Form>
+    )
 }
+
+export default SessionForm

@@ -16,6 +16,7 @@ import {
 import { deleteSession } from '@/app/(main)/session/[sessionId]/action'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { revalidatePath } from 'next/cache'
 const EditDelete = ({sessionId } : {sessionId : string}) => {
     const router = useRouter()
   return (

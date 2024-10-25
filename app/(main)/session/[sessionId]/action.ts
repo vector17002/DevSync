@@ -2,7 +2,6 @@
 import { db } from '@/db/migrate';
 import { sessionTable } from '@/db/schema';
 import { initialProfile } from '@/lib/initial-profile';
-import { resolveNs } from 'dns/promises';
 import { eq } from 'drizzle-orm';
 import { StreamChat } from 'stream-chat'
 
@@ -18,7 +17,6 @@ const api_secret = process.env.GET_STREAM_SECRET!
 const serverClient = StreamChat.getInstance(api_key, api_secret)
 //@ts-ignore
 const token = serverClient.createToken(user?.id)
-
 return token
 }
 

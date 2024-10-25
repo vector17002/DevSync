@@ -1,5 +1,4 @@
 "use client"
-
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -15,7 +14,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { useParams, useRouter } from "next/navigation"
-import { createSessionAction } from "@/app/(main)/create-session/action"
+import { updateSession } from "@/app/(main)/edit-session/[sessionId]/action"
 
 const formSchema = z.object({
    name: z.string().min(2, {
@@ -30,27 +29,23 @@ const formSchema = z.object({
   }), 
   githubRepo: z.string(),
   skills: z.string(),
-  // startAt: z.string().date(),
-  // endAt: z.string().date()
 })
  const SessionForm = () => {    
     const router = useRouter()
-    const {sessionId} = useParams()
-    console.log(sessionId)
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-          name: "",
-          details: "",
-          githubRepo: "",
-          skills: "",
-          // startAt: "",
-          // endAt: ""
-        },
-      })
-     
+    const { sessionId } = useParams()
+     const form = useForm<z.infer<typeof formSchema>>({
+      resolver: zodResolver(formSchema),
+      defaultValues: {
+        name: "",
+        details: "",
+        githubRepo: "",
+        skills: ""
+      },
+    })
       async function onSubmit(values: z.infer<typeof formSchema>)  {
-        await createSessionAction(values)
+        await updateSession( 
+          //@ts-ignore
+          sessionId, values)
         router.push('/debugcohort')
       }
     return(

@@ -45,7 +45,7 @@ const apiKey = process.env.GET_STREAM_API_KEY!;
     return (
       <div className='w-full mb-10'>
       {client && call &&
-      <StreamTheme>
+      <StreamTheme className='w-full h-full'>
       <div className='w-full text-white'>
       <StreamVideo client={client}>
         <StreamCall call={call}>

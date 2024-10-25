@@ -13,9 +13,11 @@ import { SessionTableType } from "@/db/schema"
 import { Badge } from "./ui/badge"
 import ParticipantsBagde from "./ui/participants"
 import EditDelete from "./main/session/edit_delete"
+import { initialProfile } from "@/lib/initial-profile"
   
 
-const MultiCard = ({data , user} : {data  : SessionTableType , user : any}) => {
+const MultiCard = async ({data } : {data  : SessionTableType}) => {
+const user = await initialProfile();
 const tags = data.skills?.toLowerCase().split(',')
   return (
 <Card className="min-w-[22vw] h-[40vh] flex flex-col justify-between">

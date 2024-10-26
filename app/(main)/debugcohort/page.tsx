@@ -17,7 +17,7 @@ const DebugCohort = async ({
   unstable_noStore()
   const { search } = searchParams;
   const sessions = await db.query.sessionTable.findMany({
-    where: search ? like(sessionTable.skills, `%${search}%`) : like(sessionTable.status, `%%`),
+    where: search ? like(sessionTable.skills, `%${search}%`) : like(sessionTable.skills, `%%`),
     with: {
       hostId: true
     }

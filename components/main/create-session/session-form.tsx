@@ -48,6 +48,7 @@ const formSchema = z.object({
       })
      
       async function onSubmit(values: z.infer<typeof formSchema>)  {
+        values.skills = values.skills.toLowerCase();
         await createSessionAction(values)
         router.push('/debugcohort')
       }

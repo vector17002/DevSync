@@ -3,6 +3,7 @@ import { db } from '@/db/migrate';
 import { sessionTable } from '@/db/schema';
 import { initialProfile } from '@/lib/initial-profile';
 import { eq } from 'drizzle-orm';
+import { revalidatePath } from 'next/cache';
 import { StreamChat } from 'stream-chat'
 
 export async function  generateToken (){
@@ -22,4 +23,5 @@ return token
 
 export async function deleteSession(sessionId: string) {
     await db.delete(sessionTable).where(eq(sessionTable.id, sessionId))
+    revalidatePath('/debugcohort')
 }

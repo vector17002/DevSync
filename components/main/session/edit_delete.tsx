@@ -16,14 +16,24 @@ import {
 import { deleteSession } from '@/app/(main)/session/[sessionId]/action'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { revalidatePath } from 'next/cache'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import { ComboboxDemo } from '../combobox'
 const EditDelete = ({sessionId } : {sessionId : string}) => {
     const router = useRouter()
   return (
     <div className="flex gap-5">
-    <Link href={`/edit-session/${sessionId}`}>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+        <Link href={`/edit-session/${sessionId}`}>
     <Button size="icon" variant="outline" className="rounded-xl"> <Edit className="w-4 h-4"/> </Button>
     </Link>
+        </TooltipTrigger>
+        <TooltipContent className='bg-black text-white font-bold text-sm dark:bg-white dark:text-black rounded-xl p-2'>
+          <p>Edit your session</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
     <AlertDialog >
       <AlertDialogTrigger asChild>
       <Button className="bg-rose-500 rounded-xl text-white hover:text-red-500" size="icon"> 
@@ -41,10 +51,11 @@ const EditDelete = ({sessionId } : {sessionId : string}) => {
         <AlertDialogFooter>
           <AlertDialogCancel className='rounded-xl font-bold'>Cancel</AlertDialogCancel>
           <AlertDialogAction className='bg-rose-500 text-white font-bold hover:text-red-500 rounded-xl' onClick={() => {deleteSession(sessionId) 
-            router.push('/debugcohort')}}>Delete</AlertDialogAction>
+          router.push('/debugcohort')}}>Delete</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
+    <ComboboxDemo/>
     </div>
   )
 }

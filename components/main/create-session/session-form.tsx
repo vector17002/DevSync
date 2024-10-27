@@ -29,7 +29,7 @@ const formSchema = z.object({
     message: "Name should be of max 50 characters"
   }), 
   githubRepo: z.string(),
-  skills: z.string(),
+  skills: z.string().toLowerCase(),
   // startAt: z.string().date(),
   // endAt: z.string().date()
 })
@@ -48,7 +48,6 @@ const formSchema = z.object({
       })
      
       async function onSubmit(values: z.infer<typeof formSchema>)  {
-        values.skills = values.skills.toLowerCase();
         await createSessionAction(values)
         router.push('/debugcohort')
       }

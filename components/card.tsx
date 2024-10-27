@@ -14,15 +14,19 @@ import { Badge } from "./ui/badge"
 import ParticipantsBagde from "./ui/participants"
 import EditDelete from "./main/session/edit_delete"
 import { initialProfile } from "@/lib/initial-profile"
+import { cn } from "@/lib/utils"
   
 
-const MultiCard = async ({data } : {data  : SessionTableType}) => {
+const MultiCard = async ({ data } : {data  : SessionTableType}) => {
 const user = await initialProfile();
 const tags = data.skills?.toLowerCase().split(',')
   return (
 <Card className="min-w-[22vw] h-[40vh] flex flex-col justify-between">
   <CardHeader className="h-2">
-    <CardTitle className="text-xl font-bold">{data.name}</CardTitle>
+    <CardTitle className="flex flex-row justify-between mb-2"><p className="text-2xl font-bold">{data.name}</p>
+    <Badge className={`${data.status === 'on-going' ? "bg-green-500  animate-flicker" : data.status === 'compeleted' ? "bg-red-500" : "bg-indigo-500" } text-white rounded-xl w-max h-max`}>
+      {data.status ===  'on-going' ? "Live" : data.status === 'compeleted' ? "Completed" : "Paused"}
+    </Badge></CardTitle>
     <CardDescription>{data.details}</CardDescription>
   </CardHeader>
   <CardContent className="flex flex-col justify-between gap-5 h-4">
@@ -35,7 +39,7 @@ const tags = data.skills?.toLowerCase().split(',')
     <div className="flex items-center gap-5">
     <Link 
     //@ts-ignore 
-    href={data.githubRepo} className="font-semibold flex hover:text-blue-300 text-xs" target="_blank">
+    href={data.githubRepo} className="font-semibold flex hover:text-indigo-500 text-xs" target="_blank">
     <GithubIcon className="w-4 h-4"/>
      Github
     </Link>

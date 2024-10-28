@@ -25,3 +25,14 @@ export async function deleteSession(sessionId: string) {
     await db.delete(sessionTable).where(eq(sessionTable.id, sessionId))
     revalidatePath('/debugcohort')
 }
+
+export async function setStatusForSession(sessionId: string, value: "compeleted" | "not-completed" | "on-going"){
+    if(value !== "compeleted"){
+    //@ts-ignore
+    await db.update(sessionTable).set({status : value}).where(eq(sessionTable.id, sessionId))
+}else{
+    //@ts-ignore
+    await db.update(sessionTable).set({status : value, endedAt : new Date()}).where(eq(sessionTable.id, sessionId))
+}
+    revalidatePath('/debugcohort')
+}

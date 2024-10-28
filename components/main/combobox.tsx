@@ -18,6 +18,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { setStatusForSession } from "@/app/(main)/session/[sessionId]/action"
 
 const frameworks = [
   {
@@ -29,14 +30,14 @@ const frameworks = [
     label: "Done",
   },
   {
-    value: "not-compeleted",
+    value: "not-completed",
     label: "Pause",
   },
 ]
 
-export function ComboboxDemo() {
+export function ComboboxDemo({sessionId , currStatus} : {sessionId: string , currStatus: string }) {
   const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("")
+  const [value, setValue] = React.useState(currStatus)
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -47,9 +48,7 @@ export function ComboboxDemo() {
           aria-expanded={open}
           className="w-max justify-between rounded-xl"
         >
-          {value
-            ? frameworks.find((framework) => framework.value === value)?.label
-            : "Set status"}
+          {currStatus ? frameworks.find((f) => f.value === currStatus)?.label : "Select Status"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -57,13 +56,15 @@ export function ComboboxDemo() {
         <Command>
           <CommandInput placeholder="Search status" />
           <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>
               {frameworks.map((framework) => (
                 <CommandItem
                   key={framework.value}
                   value={framework.value}
-                  onSelect={(currentValue) => {
+                  onSelect={async (currentValue) => {
+                   
+                    //@ts-ignore
+                    await setStatusForSession(sessionId , currentValue)
                     setValue(currentValue === value ? "" : currentValue)
                     setOpen(false)
                   }}

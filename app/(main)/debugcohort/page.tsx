@@ -6,6 +6,7 @@ import { Cover } from "@/components/ui/cover";
 import { SearchBar } from "./search";
 import { like } from "drizzle-orm";
 import { sessionTable } from "@/db/schema";
+import { unstable_noStore } from "next/cache";
 
 const DebugCohort = async ({ 
   searchParams
@@ -13,6 +14,7 @@ const DebugCohort = async ({
   searchParams : {
   search : string
 }}) => {
+  unstable_noStore();
   const { search } = searchParams;
   const sessions = await db.query.sessionTable.findMany({
     where: search ? like(sessionTable.skills, `%${search}%`) : like(sessionTable.skills, `%%`),

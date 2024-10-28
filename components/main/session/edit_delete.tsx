@@ -18,7 +18,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { ComboboxDemo } from '../combobox'
-const EditDelete = ({sessionId } : {sessionId : string}) => {
+const EditDelete = ({sessionId , currStatus } : {sessionId : string , currStatus : string }) => {
     const router = useRouter()
   return (
     <div className="flex gap-5">
@@ -55,7 +55,7 @@ const EditDelete = ({sessionId } : {sessionId : string}) => {
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-    <ComboboxDemo/>
+    <ComboboxDemo sessionId={sessionId} currStatus={currStatus}/>
     </div>
   )
 }

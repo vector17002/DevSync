@@ -24,7 +24,7 @@ const tags = data.skills?.toLowerCase().split(',')
 <Card className="min-w-[22vw] h-[40vh] flex flex-col justify-between">
   <CardHeader className="h-2">
     <CardTitle className="flex flex-row justify-between mb-2"><p className="text-2xl font-bold">{data.name}</p>
-    <Badge className={`${data.status === 'on-going' ? "bg-green-500  animate-flicker" : data.status === 'compeleted' ? "bg-red-500" : "bg-indigo-500" } text-white rounded-xl w-max h-max`}>
+    <Badge className={cn(data.status === 'on-going' ? "bg-green-500  animate-flicker" : data.status === 'compeleted' ? "bg-red-500" : "bg-indigo-500" , "text-white rounded-xl w-max h-max")}>
       {data.status ===  'on-going' ? "Live" : data.status === 'compeleted' ? "Completed" : "Paused"}
     </Badge></CardTitle>
     <CardDescription>{data.details}</CardDescription>
@@ -47,13 +47,13 @@ const tags = data.skills?.toLowerCase().split(',')
      //@ts-ignore
     user.id === data.hostId.id ? (
       //@ts-ignore
-      <EditDelete sessionId={data.id}/>
+      <EditDelete sessionId={data.id} currStatus={data.status} />
       ) : (<></>)
     }
     </div>
   </CardContent>
   <CardFooter className="flex items-center gap-2 text-xs">
-    <CustomButton value="Join" link={`/session/${data.id}`} className={""}/>
+    {data.status === 'on-going' ? ( <CustomButton value="Join" link={`/session/${data.id}`} className={""}/>) : data.status === 'compeleted' ? (<p className="text-md font-bold"> Ended at {data.endedAt} </p>) : (<CustomButton value="Subscribe" className={"w-full bg-gray-400"}/>)}
     <ParticipantsBagde item={data.hostId} designation={'Host'}/>
   </CardFooter>
 </Card>

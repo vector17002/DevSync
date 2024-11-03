@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   Command,
-  CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
@@ -31,7 +30,7 @@ const frameworks = [
   },
   {
     value: "not-completed",
-    label: "Pause",
+    label: "Close",
   },
 ]
 
@@ -48,7 +47,7 @@ export function ComboboxDemo({sessionId , currStatus} : {sessionId: string , cur
           aria-expanded={open}
           className="w-max justify-between rounded-xl"
         >
-          {currStatus ? frameworks.find((f) => f.value === currStatus)?.label : "Select Status"}
+          {currStatus ? frameworks.find((f) => f.value === currStatus)?.label : "Set Status"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>

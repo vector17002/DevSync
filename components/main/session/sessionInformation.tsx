@@ -20,7 +20,8 @@ const SessionInformation = async ({session} : {session : any}) => {
     {tags?.map(
         //@ts-ignore
         (tag) => (
-      <Badge className="bg-black text-white p-1 px-2 rounded-xl hover:bg-white hover:text-black dark:bg-white dark:text-black" key={tag}>{tag}</Badge>
+          <Link href={`/debugcohort?search=${tag}`} key={tag}>
+      <Badge className="bg-black text-white p-1 px-2 rounded-xl hover:bg-white hover:text-black dark:bg-white dark:text-black" >{tag}</Badge></Link>
     ))}
     </div>
     <div className="flex gap-5 items-center w-full">
@@ -31,7 +32,7 @@ const SessionInformation = async ({session} : {session : any}) => {
     {
     //@ts-ignore 
     user.id === session.hostId && (
-      <EditDelete sessionId={session.id}/>
+      <EditDelete sessionId={session.id} currStatus={session.status}/>
     )
     }
     </div>

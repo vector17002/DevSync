@@ -17,7 +17,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
 const formSchema = z.object({
-  search: z.string().min(0).max(50),
+  search: z.string().min(0).max(50).toLowerCase(),
 });
 
 export function SearchBar() {

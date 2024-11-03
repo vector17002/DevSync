@@ -66,7 +66,7 @@ const ParticipantsBagde = ({item , designation} : {item:any , designation: strin
       width={100}
       src={item.image_url}
       alt={item.name}
-      className="object-cover !m-0 !p-0 rounded-full h-10 w-10 border-2 group-hover:scale-105 group-hover:z-30 border-white transition duration-500"
+      className="object-cover !m-0 !p-0 rounded-full h-10 w-11 border-2 group-hover:scale-105 group-hover:z-30 border-white transition duration-500"
     />
   </div>
   )

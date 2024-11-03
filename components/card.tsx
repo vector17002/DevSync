@@ -25,7 +25,7 @@ const tags = data.skills?.toLowerCase().split(',')
   <CardHeader className="h-2">
     <CardTitle className="flex flex-row justify-between mb-2"><p className="text-2xl font-bold">{data.name}</p>
     <Badge className={cn(data.status === 'on-going' ? "bg-green-500  animate-flicker" : data.status === 'compeleted' ? "bg-red-500" : "bg-indigo-500" , "text-white rounded-xl w-max h-max")}>
-      {data.status ===  'on-going' ? "Live" : data.status === 'compeleted' ? "Completed" : "Paused"}
+      {data.status ===  'on-going' ? "Live" : data.status === 'compeleted' ? "Completed" : "Closed"}
     </Badge></CardTitle>
     <CardDescription>{data.details}</CardDescription>
   </CardHeader>
@@ -52,7 +52,7 @@ const tags = data.skills?.toLowerCase().split(',')
     }
     </div>
   </CardContent>
-  <CardFooter className="flex items-center gap-2 text-xs">
+  <CardFooter className="flex items-center justify-between gap-2 text-xs">
     {data.status === 'on-going' ? ( <CustomButton value="Join" link={`/session/${data.id}`} className={""}/>) : data.status === 'compeleted' ? (<p className="text-md font-bold"> Ended at {data.endedAt} </p>) : (<CustomButton value="Subscribe" className={"w-full bg-gray-400"}/>)}
     <ParticipantsBagde item={data.hostId} designation={'Host'}/>
   </CardFooter>

@@ -14,10 +14,10 @@ const Navbar = async () => {
     <div className="flex w-full justify-between px-10 py-2 bg-slate-50 dark:bg-gray-950">
         <Link href={"/"} >
          <div className="dark:flex hidden">
-          <Image src="/assets/image.png" height={180} width={200} className="rounded-full" alt={"logo"}/>
+          <Image src="/assets/image.png" height={160} width={180} className="rounded-full" alt={"logo"}/>
           </div>
           <div className="visible dark:hidden">
-          <Image src="/assets/logofinall.png" height={180} width={200} className="rounded-full" alt={"logo"}/>
+          <Image src="/assets/logofinall.png" height={160} width={180} className="rounded-full" alt={"logo"}/>
           </div>
         </Link>
         <div className="flex flex-row gap-5 justify-center items-center">

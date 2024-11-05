@@ -5,7 +5,6 @@ import { eq } from "drizzle-orm"
 import { sessionTable, SessionTableType } from "@/db/schema"
 import { revalidatePath } from "next/cache"
 import { initialProfile } from "@/lib/initial-profile"
-import { useRouter } from "next/navigation"
 
 export async function updateSession(sessionId : string , session : Omit<SessionTableType , "hostId"> ){
    const user = await initialProfile()

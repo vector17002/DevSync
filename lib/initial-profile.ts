@@ -4,8 +4,12 @@ import { currentUser, redirectToSignIn } from "@clerk/nextjs/server"
 import { eq } from "drizzle-orm";
 
 export const initialProfile = async () =>{
-    const user = await currentUser();
-
+    try{
+    await currentUser();
+    }catch{
+        return redirectToSignIn()
+    }
+    const user = await currentUser()
     if(!user)
         return redirectToSignIn();
 

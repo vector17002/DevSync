@@ -12,17 +12,6 @@ export const userTable = pgTable("Users",{
    skills: text("skills").default(""),
 })
 
-export const projectTable = pgTable("Projects",{
-   id: uuid("id").primaryKey().notNull().defaultRandom(),
-   name: varchar("name",{length: 255}).notNull(),
-   hostId: varchar("hostId").references(() => userTable.id, { onDelete: "cascade"}).notNull(),
-   githubRepo: varchar("githubRepo").default("").notNull(),
-   details: varchar("details", {length: 200}).default(""),
-   status: varchar("status").$type<"compeleted" | "not-completed" | "on-going">().$default(() => "not-completed"),
-   inviteUrl: varchar("inviteUrl").default(""),
-   skills: text("skills").default(""),
-})
-
 export const sessionTable = pgTable("Sessions" , {
    id: uuid("id").primaryKey().notNull().defaultRandom(),
    name: varchar("name",{length: 255}).notNull(),
@@ -39,19 +28,9 @@ export const sessionTable = pgTable("Sessions" , {
 // relations
 export const userRelations = relations(userTable ,  ({many}) => (
    {
-      projectsId: many(projectTable),
       sessionId: many(sessionTable)
    }
 ))
-
-export const projectRelations = relations(projectTable, ({one , many}) => ({
-   hostId: one(userTable, {
-      fields: [projectTable.hostId],
-      references: [userTable.id]
-   }),
-   waitingCollaborators : many(userTable),
-   collaborators: many(userTable)
-}))
 
 export const sessionRelations = relations(sessionTable,({one,many}) => ({
    hostId: one(userTable,{
@@ -64,5 +43,4 @@ export const sessionRelations = relations(sessionTable,({one,many}) => ({
 
 // types
 export type UserTableType = typeof userTable.$inferInsert
-export type ProjectTableType = typeof projectTable.$inferInsert
 export type SessionTableType = typeof sessionTable.$inferInsert

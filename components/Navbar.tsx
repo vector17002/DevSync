@@ -34,7 +34,8 @@ const Navbar = async () => {
             variables:{
               colorText: "black",
             }
-          }}/>
+          }}
+          afterSignOutUrl="/"/>
           </div>
           <div className="hidden dark:flex w-full">
           <UserButton 

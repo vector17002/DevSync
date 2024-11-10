@@ -29,6 +29,13 @@
       "when": 1730823835667,
       "tag": "0003_noisy_swarm",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1731162912550,
+      "tag": "0004_slim_true_believers",
+      "breakpoints": true
     }
   ]
 }

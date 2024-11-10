@@ -10,6 +10,8 @@ export const userTable = pgTable("Users",{
    githubId: varchar("githubId").default(""),
    githubImageUrl : varchar("githubImageurl").default(""),
    skills: text("skills").default(""),
+   location: text("location").default("Earth"),
+   university: text("university").default(""),
 })
 
 export const sessionTable = pgTable("Sessions" , {
@@ -36,8 +38,7 @@ export const sessionRelations = relations(sessionTable,({one,many}) => ({
    hostId: one(userTable,{
       fields: [sessionTable.hostId],
       references: [userTable.id]
-   }),
-   collaborators: many(userTable)
+   })
 }))
 
 

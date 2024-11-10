@@ -51,7 +51,7 @@ export function ComboboxDemo({sessionId , currStatus} : {sessionId: string , cur
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-max p-0">
+      <PopoverContent className="w-max p-0 bg-white dark:bg-black rounded-xl">
         <Command>
           <CommandInput placeholder="Search status" />
           <CommandList>

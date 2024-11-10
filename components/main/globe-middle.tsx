@@ -415,7 +415,7 @@ const sampleArcs = [
           className="div"
         >
       <h1 className="text-4xl md:text-4xl lg:text-5xl font-semibold max-w-7xl mx-auto text-center mt-6 relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white">
-        Connect to amazing collaborators and peers <br /> across the globe at <Cover className="rounded-lg">swift speed</Cover>
+        Connect with amazing collaborators and peers <br /> across the globe at <Cover className="rounded-lg">swift speed</Cover>
       </h1>
         </motion.div>
         <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />

@@ -6,13 +6,13 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
-import CustomButton from "./custombutton"
+import CustomButton from "../custombutton"
 import Link from "next/link"
 import { GithubIcon } from "lucide-react"
 import { SessionTableType } from "@/db/schema"
-import { Badge } from "./ui/badge"
-import ParticipantsBagde from "./ui/participants"
-import EditDelete from "./main/session/edit_delete"
+import { Badge } from "../ui/badge"
+import ParticipantsBagde from "../ui/participants"
+import EditDelete from "./session/edit_delete"
 import { initialProfile } from "@/lib/initial-profile"
 import { cn } from "@/lib/utils"
   
@@ -45,10 +45,10 @@ const tags = data.skills?.toLowerCase().split(',')
     </Link>
    {
      //@ts-ignore
-    user.id === data.hostId.id ? (
+    user.id === data.hostId.id && (
       //@ts-ignore
       <EditDelete sessionId={data.id} currStatus={data.status} />
-      ) : (<></>)
+      ) 
     }
     </div>
   </CardContent>

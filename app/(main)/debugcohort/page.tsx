@@ -1,7 +1,7 @@
 import { db } from "@/db/migrate";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import MultiCard from "@/components/card";
+import MultiCard from "@/components/main/card";
 import { Cover } from "@/components/ui/cover";
 import { SearchBar } from "./search";
 import { like } from "drizzle-orm";

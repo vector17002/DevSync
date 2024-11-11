@@ -67,7 +67,7 @@ const EditProfile = ( { profile } : {profile : any}) => {
             <FormItem>
               <FormLabel>Bio</FormLabel>
               <FormControl className="text-slate-500 dark:text-slate-300">
-                <Input placeholder="Bio" {...field} className="rounded-xl"/>
+                <Input placeholder="Bio" {...field}/>
               </FormControl>
               <FormMessage className="text-rose-400"/>
             </FormItem>
@@ -80,7 +80,7 @@ const EditProfile = ( { profile } : {profile : any}) => {
             <FormItem>
               <FormLabel>Skills</FormLabel>
               <FormControl className="text-slate-500 dark:text-slate-300">
-                <Input placeholder="Enter your skills and interests seperated with ','" {...field} className="rounded-xl"/>
+                <Input placeholder="Enter your skills and interests seperated with ','" {...field} />
               </FormControl>
               <FormMessage className="text-rose-400"/>
             </FormItem>
@@ -93,7 +93,7 @@ const EditProfile = ( { profile } : {profile : any}) => {
             <FormItem>
               <FormLabel>Location</FormLabel>
               <FormControl className="text-slate-500 dark:text-slate-300">
-                <Input placeholder="Enter your current location in 'State, Country' format" {...field} className="rounded-xl"/>
+                <Input placeholder="Enter your current location in 'State, Country' format" {...field} />
               </FormControl>
               <FormMessage className="text-rose-400"/>
             </FormItem>
@@ -106,7 +106,7 @@ const EditProfile = ( { profile } : {profile : any}) => {
             <FormItem>
               <FormLabel>University</FormLabel>
               <FormControl className="text-slate-500 dark:text-slate-300">
-                <Input placeholder="Enter your college or university" {...field} className="rounded-xl"/>
+                <Input placeholder="Enter your college or university" {...field} />
               </FormControl>
               <FormMessage className="text-rose-400"/>
             </FormItem>

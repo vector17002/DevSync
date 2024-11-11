@@ -61,7 +61,7 @@ const formSchema = z.object({
             <FormItem>
               <FormLabel className="font-semibold text-lg">Name</FormLabel>
               <FormControl className="text-slate-500 dark:text-slate-300">
-                <Input placeholder="Name" {...field} className="rounded-xl"/>
+                <Input placeholder="Name of your project" {...field} className="rounded-xl"/>
               </FormControl>
               <FormMessage className="text-rose-400"/>
             </FormItem>

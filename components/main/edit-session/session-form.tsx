@@ -30,7 +30,7 @@ const formSchema = z.object({
   githubRepo: z.string(),
   skills: z.string(),
 })
- const SessionForm = () => {    
+ const SessionForm = () => {   
     const router = useRouter()
     const { sessionId } = useParams()
      const form = useForm<z.infer<typeof formSchema>>({

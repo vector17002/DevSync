@@ -51,7 +51,7 @@ const EditDelete = ({sessionId , currStatus } : {sessionId : string , currStatus
         <AlertDialogFooter>
           <AlertDialogCancel className='rounded-xl font-bold'>Cancel</AlertDialogCancel>
           <AlertDialogAction className='bg-rose-500 text-white font-bold hover:text-red-500 rounded-xl' onClick={() => {deleteSession(sessionId) 
-          router.push('/debugcohort')}}>Delete</AlertDialogAction>
+          router.refresh()}}>Delete</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

@@ -25,8 +25,8 @@ const formSchema = z.object({
   }),
   details:z.string().min(2, {
     message: "Name must be at least 2 characters.",
-  }).max(200, {
-    message: "Name should be of max 50 characters"
+  }).max(100, {
+    message: "Details should be of max 100 characters"
   }), 
   githubRepo: z.string(),
   skills: z.string().toLowerCase(),

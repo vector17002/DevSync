@@ -12,6 +12,8 @@ export const userTable = pgTable("Users",{
    skills: text("skills").default(""),
    location: text("location").default("Earth"),
    university: text("university").default(""),
+   followers: varchar("followers").array().notNull().default(sql`ARRAY[]::varchar[]`),
+   following: varchar("following").array().notNull().default(sql`ARRAY[]::varchar[]`)
 })
 
 export const sessionTable = pgTable("Sessions" , {
@@ -27,21 +29,22 @@ export const sessionTable = pgTable("Sessions" , {
    endedAt: date("endedAt"),
 })
 
+
 // relations
 export const userRelations = relations(userTable ,  ({many}) => (
    {
-      sessionId: many(sessionTable)
+      sessionId: many(sessionTable),
    }
 ))
 
-export const sessionRelations = relations(sessionTable,({one,many}) => ({
+export const sessionRelations = relations(sessionTable,({one}) => ({
    hostId: one(userTable,{
       fields: [sessionTable.hostId],
       references: [userTable.id]
    })
 }))
 
-
 // types
 export type UserTableType = typeof userTable.$inferInsert
 export type SessionTableType = typeof sessionTable.$inferInsert
+

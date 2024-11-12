@@ -30,10 +30,10 @@ const tags = data.skills?.toLowerCase().split(',')
     <CardDescription>{data.details}</CardDescription>
   </CardHeader>
   <CardContent className="flex flex-col justify-between gap-5 h-4">
-    <div className="flex gap-5 items-center w-full flex-wrap">
+    <div className="flex gap-3 items-center w-full flex-wrap">
     {tags?.map((tag) => (
       <Link href={`/debugcohort?search=${tag}`} key={tag}>
-      <Badge className="bg-black text-white p-1 px-2 rounded-xl hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white" >{tag}</Badge></Link>
+      <Badge className="bg-black text-white rounded-xl hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white" >{tag}</Badge></Link>
     ))}
     </div>
     <div className="flex items-center gap-5">

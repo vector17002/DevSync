@@ -1,86 +1,9 @@
 {
-  "id": "5f09c3f7-3980-4cef-ba80-f1c5bbb092c3",
+  "id": "a7d84999-8f4b-44e9-b3e1-586b0af942ab",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.Projects": {
-      "name": "Projects",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "uuid",
-          "primaryKey": true,
-          "notNull": true,
-          "default": "gen_random_uuid()"
-        },
-        "name": {
-          "name": "name",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "hostId": {
-          "name": "hostId",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "githubRepo": {
-          "name": "githubRepo",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "''"
-        },
-        "details": {
-          "name": "details",
-          "type": "varchar(200)",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "''"
-        },
-        "status": {
-          "name": "status",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "inviteUrl": {
-          "name": "inviteUrl",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "''"
-        },
-        "skills": {
-          "name": "skills",
-          "type": "text[]",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "ARRAY[]::text[]"
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "Projects_hostId_Users_id_fk": {
-          "name": "Projects_hostId_Users_id_fk",
-          "tableFrom": "Projects",
-          "tableTo": "Users",
-          "columnsFrom": [
-            "hostId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
     "public.Sessions": {
       "name": "Sessions",
       "schema": "",
@@ -133,10 +56,10 @@
         },
         "skills": {
           "name": "skills",
-          "type": "text[]",
+          "type": "text",
           "primaryKey": false,
           "notNull": false,
-          "default": "ARRAY[]::text[]"
+          "default": "''"
         },
         "startAt": {
           "name": "startAt",
@@ -147,7 +70,7 @@
         },
         "endedAt": {
           "name": "endedAt",
-          "type": "timestamp",
+          "type": "date",
           "primaryKey": false,
           "notNull": false
         }
@@ -223,10 +146,38 @@
         },
         "skills": {
           "name": "skills",
-          "type": "text[]",
+          "type": "text",
           "primaryKey": false,
           "notNull": false,
-          "default": "ARRAY[]::text[]"
+          "default": "''"
+        },
+        "location": {
+          "name": "location",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'Earth'"
+        },
+        "university": {
+          "name": "university",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "''"
+        },
+        "followers": {
+          "name": "followers",
+          "type": "varchar[]",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "ARRAY[]::varchar[]"
+        },
+        "following": {
+          "name": "following",
+          "type": "varchar[]",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "ARRAY[]::varchar[]"
         }
       },
       "indexes": {},

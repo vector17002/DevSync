@@ -23,11 +23,11 @@ const DebugCohort = async ({
     }
   });
   return ( 
-    <div className="w-full h-full mt-10 flex flex-col items-center justify-center">
+    <div className="w-full h-full mt-10 mb-10 flex flex-col items-center justify-center">
       <div className="flex flex-col w-full gap-8 items-center justify-center">
         <div className="flex flex-col justify-center items-center gap-8">
-          <Cover className="text-5xl font-extrabold">Debug Cohort</Cover>
-<div className="flex flex-col text-lg text-slate-600 justify-center items-center dark:text-slate-300"> Create or find a session, let other developers across the application <p>help you solve bugs and collab in your project.</p></div>
+          <Cover className="text-4xl font-extrabold">Debug Cohort</Cover>
+<div className="flex flex-col text-md text-slate-600 justify-center items-center dark:text-slate-300"> Create or find a session, let other developers across the application <p>help you solve bugs and collab in your project.</p></div>
         </div>
         <div className="flex gap-5 w-3/5 items-center">
         <Link href={'/create-session'}>

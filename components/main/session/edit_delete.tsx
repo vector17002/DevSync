@@ -26,7 +26,7 @@ const EditDelete = ({sessionId , currStatus } : {sessionId : string , currStatus
       <Tooltip>
         <TooltipTrigger asChild>
         <Link href={`/edit-session/${sessionId}`}>
-    <Button size="icon" variant="outline" className="rounded-xl"> <Edit className="w-4 h-4"/> </Button>
+    <Button size="icon" variant="outline"> <Edit className="w-4 h-4"/> </Button>
     </Link>
         </TooltipTrigger>
         <TooltipContent className='bg-black text-white font-bold text-sm dark:bg-white dark:text-black rounded-xl p-2'>
@@ -36,7 +36,7 @@ const EditDelete = ({sessionId , currStatus } : {sessionId : string , currStatus
     </TooltipProvider>
     <AlertDialog >
       <AlertDialogTrigger asChild>
-      <Button className="bg-rose-500 rounded-xl text-white hover:text-red-500" size="icon"> 
+      <Button className="bg-rose-500 text-white hover:text-red-500" size="icon"> 
         <TrashIcon className='w-4 h-4'/>
     </Button>
       </AlertDialogTrigger>
@@ -49,8 +49,8 @@ const EditDelete = ({sessionId , currStatus } : {sessionId : string , currStatus
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className='rounded-xl font-bold'>Cancel</AlertDialogCancel>
-          <AlertDialogAction className='bg-rose-500 text-white font-bold hover:text-red-500 rounded-xl' onClick={() => {deleteSession(sessionId) 
+          <AlertDialogCancel className='rounded-md font-bold'>Cancel</AlertDialogCancel>
+          <AlertDialogAction className='bg-rose-500 text-white font-bold hover:text-red-500 rounded-md' onClick={() => {deleteSession(sessionId) 
           router.refresh()}}>Delete</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

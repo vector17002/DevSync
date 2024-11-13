@@ -19,10 +19,15 @@ import { updateProfile } from "@/app/(main)/profile/[profileId]/action";
   
   
   const formSchema = z.object({
+    tagline: z.string().min(3,{
+      message: "Tagline must be at least 5 characters.",
+    }).max(20,{
+      message: "Tagline must be at max 20 characters."
+    }),
     bio: z.string().min(10, {
      message: "Bio must be at least 2 characters.",
    }).max(75, {
-     message: "Bio should be of max 75 characters"
+     message: "Bio should be of max 75 characters."
    }),
    skills: z.string().toLowerCase(),
    location: z.string(),
@@ -34,6 +39,7 @@ const EditProfile = ( { profile } : {profile : any}) => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
+          tagline: `${profile.tagline}`,
           bio: `${profile.bio}`,
           skills: `${profile.skills}`,
           location: `${profile.location}`,
@@ -60,6 +66,19 @@ const EditProfile = ( { profile } : {profile : any}) => {
         </DialogHeader>
         <Form {...form}>
           <form className="flex flex-col gap-2">
+          <FormField
+          control={form.control}
+          name="tagline"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Tagline</FormLabel>
+              <FormControl className="text-slate-500 dark:text-slate-300">
+                <Input placeholder="Give a tagline For ex (SDE at ..)" {...field}/>
+              </FormControl>
+              <FormMessage className="text-rose-400"/>
+            </FormItem>
+          )}
+        />
           <FormField
           control={form.control}
           name="bio"

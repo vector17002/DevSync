@@ -35,4 +35,5 @@ export async function setStatusForSession(sessionId: string, value: "compeleted"
     await db.update(sessionTable).set({status : value, endedAt : new Date()}).where(eq(sessionTable.id, sessionId))
 }
     revalidatePath('/debugcohort')
+    revalidatePath('/profile')
 }

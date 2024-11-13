@@ -45,13 +45,13 @@ export function ComboboxDemo({sessionId , currStatus} : {sessionId: string , cur
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-max justify-between rounded-xl"
+          className="w-max justify-between "
         >
           {currStatus ? frameworks.find((f) => f.value === currStatus)?.label : "Set Status"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-max p-0 bg-white dark:bg-black rounded-xl">
+      <PopoverContent className="w-max p-0 bg-white dark:bg-black">
         <Command>
           <CommandInput placeholder="Search status" />
           <CommandList>

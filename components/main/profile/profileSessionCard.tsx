@@ -7,11 +7,11 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import Link from "next/link"
-import { GithubIcon } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import EditDelete from "@/components/main/session/edit_delete"
 import { cn } from "@/lib/utils"
 import { initialProfile } from "@/lib/initial-profile"
+import { FaGithub } from "react-icons/fa6"
 
 const ProfileSessionCard = async ({session} : {session : any}) => {
   const user = await initialProfile()
@@ -24,10 +24,10 @@ const ProfileSessionCard = async ({session} : {session : any}) => {
     </Badge></CardTitle>
     <CardDescription className="text-sm">{session.details}</CardDescription>
   </CardHeader>
-  <CardContent className="flex mt-2 justify-center items-center gap-5 h-4">
+  <CardContent className="flex mt-2 justify-start items-center gap-5 h-4">
     <Link 
     href={session.githubRepo} className="font-semibold flex hover:text-indigo-500 text-xs" target="_blank">
-    <GithubIcon className="w-5 h-5"/>
+    <FaGithub className="w-7 h-7"/>
     </Link>
     {//@ts-ignore
     user?.id === session.hostId && (

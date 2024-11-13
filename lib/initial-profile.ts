@@ -34,7 +34,10 @@ export const initialProfile = async () =>{
             email: user.primaryEmailAddress?.emailAddress,
             name: user.fullName,
             githubId: githubUrl !== '' ? githubUrl : "",
-            githubImageUrl: githubDetails[0]?.imageUrl
+            githubImageUrl: githubDetails[0]?.imageUrl,
+            followers: [],
+            following: [],
+            tagline: ""
         }).returning().onConflictDoNothing();
 
         return newProfile;

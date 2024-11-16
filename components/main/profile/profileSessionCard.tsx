@@ -20,7 +20,7 @@ const ProfileSessionCard = async ({session} : {session : any}) => {
   <CardHeader className="h-max">
     <CardTitle className="flex flex-row justify-between mb-2"><p className="text-lg font-bold">{session.name}</p>
     <Badge className={cn(session.status === 'on-going' ? "bg-green-500  animate-flicker" : session.status === 'compeleted' ? "bg-red-500" : "bg-indigo-500" , "text-white rounded-xl w-max h-max")}>
-      {session.status ===  'on-going' ? "Live" : session.status === 'compeleted' ? "Completed" : "Closed"}
+      {session.status ===  'on-going' ? "Live" : session.status === 'compeleted' ? "Completed" : "Paused"}
     </Badge></CardTitle>
     <CardDescription className="text-sm">{session.details}</CardDescription>
   </CardHeader>

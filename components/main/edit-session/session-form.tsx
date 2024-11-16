@@ -23,7 +23,7 @@ const formSchema = z.object({
     message: "Name should be of max 50 characters"
   }),
   details:z.string().min(2, {
-    message: "Name must be at least 2 characters.",
+    message: "Please specify something about your project.",
   }).max(80, {
     message: "Details should be of max 100 characters"
   }), 

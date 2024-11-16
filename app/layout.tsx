@@ -31,7 +31,7 @@ export default function RootLayout({
             enableColorScheme>
           <Navbar/>
           <NextTopLoader/>
-          <div className='main dark:hidden'>
+          <div className='main'>
           </div>
           {children}
         </ThemeProvider>

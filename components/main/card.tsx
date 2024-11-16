@@ -25,7 +25,7 @@ const tags = data.skills?.toLowerCase().split(',')
   <CardHeader className="h-2">
     <CardTitle className="flex flex-row justify-between mb-2"><p className="text-xl font-bold">{data.name}</p>
     <Badge className={cn(data.status === 'on-going' ? "bg-green-500  animate-flicker" : data.status === 'compeleted' ? "bg-red-500" : "bg-indigo-500" , "text-white rounded-xl w-max h-max")}>
-      {data.status ===  'on-going' ? "Live" : data.status === 'compeleted' ? "Completed" : "Closed"}
+      {data.status ===  'on-going' ? "Live" : data.status === 'compeleted' ? "Completed" : "Paused"}
     </Badge></CardTitle>
     <CardDescription>{data.details}</CardDescription>
   </CardHeader>

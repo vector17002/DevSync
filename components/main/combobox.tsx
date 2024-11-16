@@ -30,7 +30,7 @@ const frameworks = [
   },
   {
     value: "not-completed",
-    label: "Close",
+    label: "Pause",
   },
 ]
 

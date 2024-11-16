@@ -23,7 +23,7 @@ const DebugCohort = async ({
     }
   });
   return ( 
-    <div className="w-full h-full mt-10 mb-10 flex flex-col items-center justify-center">
+    <div className="w-full max-w-8xl mx-auto h-full mt-10 mb-10 flex flex-col items-center justify-center">
       <div className="flex flex-col w-full gap-8 items-center justify-center">
         <div className="flex flex-col justify-center items-center gap-8">
           <Cover className="text-4xl font-extrabold">Debug Cohort</Cover>

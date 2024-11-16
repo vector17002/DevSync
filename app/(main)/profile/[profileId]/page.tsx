@@ -27,7 +27,7 @@ const user = await initialProfile()
  const isFollowing = profile?.followers.includes(user.id)
 
   return (
-    <main className="flex max-w-[100vw] h-max my-[2rem] mx-[12rem] flex-row gap-3">
+    <main className="flex max-w-8xl h-max my-[2rem] mx-auto flex-row gap-3 justify-center">
      <div className="w-[18rem] h-full px-5 flex glassmorphism gap-4 flex-col">
       <div className="w-max h-full flex justify-center gap-4 items-center">
       <Image 

@@ -35,8 +35,8 @@ export const initialProfile = async () =>{
             name: user.fullName,
             githubId: githubUrl !== '' ? githubUrl : "",
             githubImageUrl: githubDetails[0]?.imageUrl,
-            followers: [],
-            following: [],
+            followers: [''],
+            following: [''],
             tagline: ""
         }).returning().onConflictDoNothing();
 

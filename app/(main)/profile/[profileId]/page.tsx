@@ -9,10 +9,12 @@ import { FaGithub, FaLocationDot, FaTags } from "react-icons/fa6"
 import { FaUniversity } from "react-icons/fa"
 import { initialProfile } from "@/lib/initial-profile";
 import ProfileSessionCard from "@/components/main/profile/profileSessionCard";
-import UserActivity from "@/components/main/profile/userActivity";
 import FollowButton from "@/components/main/profile/followButton";
 import { Separator } from "@/components/ui/separator";
 import FollowersFollowing from "@/components/main/profile/followersFollowing";
+import { Plus, TableIcon } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Profile = async (props : { params : { profileId : string} }) => {
 const user = await initialProfile()
@@ -27,7 +29,7 @@ const user = await initialProfile()
  const isFollowing = profile?.followers.includes(user.id)
 
   return (
-    <main className="flex max-w-8xl h-max my-[2rem] mx-auto flex-row gap-3 justify-center">
+    <main className="flex max-w-6xl h-max my-[2rem] mx-auto flex-row gap-3 justify-center">
      <div className="w-[18rem] h-full px-5 flex glassmorphism gap-4 flex-col">
       <div className="w-max h-full flex justify-center gap-4 items-center">
       <Image 
@@ -61,21 +63,42 @@ const user = await initialProfile()
         <Separator className="bg-slate-300"/>
       </div>
      </div>
-     <div className="flex flex-col justify-center items-center gap-3 max-w-[50rem] min-w-[50rem] h-max">
-     <div className="w-full h-max glassmorphism flex flex-col gap-3">
-      <p className="text-lg font-semibold dark:text-white">{   
-      //@ts-ignore
-      user?.id === profile?.id ? "My" : "User's"} sessions</p>
-      <div className="w-full h-full flex items-center mt-5 gap-5 overflow-x-scroll scroll-smooth">
+     <Tabs className="w-full">
+       <TabsList defaultValue="sessions" className="w-full flex justify-start gap-5">
+         <TabsTrigger value="sessions" className="text-lg font-semibold glassmorphism p-2">Sessions</TabsTrigger>
+         <TabsTrigger value="posts" className="text-lg font-semibold glassmorphism p-2">Posts</TabsTrigger>
+         {/* <TooltipProvider>
+        <Tooltip>
+      <TooltipTrigger asChild>
+      <Link href={'/create-session'} className="p-2 bg-slate-100 rounded-full dark:bg-zinc-700">
+      <Plus className="h-5 w-5"/>
+      </Link>
+      </TooltipTrigger>
+      <TooltipContent className="text-xs font-bold bg-slate-100 dark:bg-zinc-800 p-2">
+        Create session
+      </TooltipContent>
+      </Tooltip>
+      </TooltipProvider> */}
+       </TabsList>
+       <TabsContent value="sessions">
+       <div className="w-full h-max flex flex-col gap-3">
+      <div className="w-full h-max flex items-center m-2 mt-5 gap-5 flex-wrap">
         {profile?.sessions.map((session) => (
           <ProfileSessionCard key={session.id} session={session}/>
         ))}
       </div>
      </div>
-     <div className="w-full h-max glassmorphism flex flex-col gap-3">
-      <UserActivity profile={profile}/>
+       </TabsContent>
+       <TabsContent value="posts">
+       <div className="w-full h-max flex flex-col gap-3">
+      <div className="w-full h-max flex items-center mt-5 gap-5 flex-wrap">
+        {profile?.posts.map((post) => (
+          <ProfileSessionCard key={post.id} session={post}/>
+        ))}
+      </div>
      </div>
-     </div>
+       </TabsContent>
+     </Tabs>
     </main>
   )
 }

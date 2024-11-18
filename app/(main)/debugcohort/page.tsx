@@ -36,7 +36,7 @@ const DebugCohort = async ({
         <SearchBar/>
         </div>
       </div> 
-    <div className="w-4/5 h-full flex items-center mt-10 gap-5 overflow-x-scroll scroll-smooth">
+    <div className="w-full max-w-6xl mx-auto h-full grid grid-cols-3 items-center mt-10 gap-5 ">
       {sessions.map((session) => (
       <MultiCard key={session.id} data={session} />
       ))}

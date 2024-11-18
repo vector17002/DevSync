@@ -11,7 +11,7 @@ import { initialProfile } from "@/lib/initial-profile"
 const Navbar = async () => {
   const user = await initialProfile()
   return (
-    <div className="flex w-full justify-between px-10 py-2 bg-slate-50 dark:bg-gray-950">
+    <div className="flex w-full max-w-8xl mx-auto justify-between px-10 py-2 bg-slate-50 dark:bg-gray-950">
         <Link href={"/"} >
          <div className="dark:flex hidden">
           <Image src="/assets/image.png" height={160} width={180} className="rounded-full" alt={"logo"}/>

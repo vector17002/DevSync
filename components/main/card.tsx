@@ -47,7 +47,7 @@ const tags = data.skills?.toLowerCase().split(',')
      //@ts-ignore
     user.id === data.hostId.id && (
       //@ts-ignore
-      <EditDelete sessionId={data.id} currStatus={data.status} />
+      <EditDelete session={data} />
       ) 
     }
     </div>

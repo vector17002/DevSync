@@ -72,7 +72,7 @@ const EditProfile = ( { profile } : {profile : any}) => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Tagline</FormLabel>
-              <FormControl className="text-slate-500 dark:text-slate-300">
+              <FormControl className="text-neutral-600 dark:text-neutral-300">
                 <Input placeholder="Give a tagline For ex (SDE at ..)" {...field}/>
               </FormControl>
               <FormMessage className="text-rose-400"/>
@@ -85,7 +85,7 @@ const EditProfile = ( { profile } : {profile : any}) => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Bio</FormLabel>
-              <FormControl className="text-slate-500 dark:text-slate-300">
+              <FormControl className="text-neutral-600 dark:text-neutral-300">
                 <Input placeholder="Bio" {...field}/>
               </FormControl>
               <FormMessage className="text-rose-400"/>
@@ -98,7 +98,7 @@ const EditProfile = ( { profile } : {profile : any}) => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Skills</FormLabel>
-              <FormControl className="text-slate-500 dark:text-slate-300">
+              <FormControl className="text-neutral-600 dark:text-neutral-300">
                 <Input placeholder="Enter your skills and interests seperated with ','" {...field} />
               </FormControl>
               <FormMessage className="text-rose-400"/>
@@ -111,7 +111,7 @@ const EditProfile = ( { profile } : {profile : any}) => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Location</FormLabel>
-              <FormControl className="text-slate-500 dark:text-slate-300">
+              <FormControl className="text-neutral-600 dark:text-neutral-300">
                 <Input placeholder="Enter your current location in 'State, Country' format" {...field} />
               </FormControl>
               <FormMessage className="text-rose-400"/>
@@ -124,7 +124,7 @@ const EditProfile = ( { profile } : {profile : any}) => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>University</FormLabel>
-              <FormControl className="text-slate-500 dark:text-slate-300">
+              <FormControl className="text-neutral-600 dark:text-neutral-300">
                 <Input placeholder="Enter your college or university" {...field} />
               </FormControl>
               <FormMessage className="text-rose-400"/>

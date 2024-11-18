@@ -16,7 +16,7 @@ import { FaGithub } from "react-icons/fa6"
 const ProfileSessionCard = async ({session} : {session : any}) => {
   const user = await initialProfile()
   return (
-    <Card className="min-w-[18rem] max-w-[18rem] h-[12rem] flex flex-col justify-between">
+    <Card className="w-full h-[12rem] flex flex-col justify-between">
   <CardHeader className="h-max">
     <CardTitle className="flex flex-row justify-between mb-2"><p className="text-lg font-bold">{session.name}</p>
     <Badge className={cn(session.status === 'on-going' ? "bg-green-500  animate-flicker" : session.status === 'compeleted' ? "bg-red-500" : "bg-indigo-500" , "text-white rounded-xl w-max h-max")}>
@@ -31,7 +31,7 @@ const ProfileSessionCard = async ({session} : {session : any}) => {
     </Link>
     {//@ts-ignore
     user?.id === session.hostId && (
-      <EditDelete sessionId={session.id} currStatus={session.status}/>
+      <EditDelete session={session}/>
     )}
   </CardContent>
   <CardFooter className="flex items-center justify-between gap-2 text-xs">

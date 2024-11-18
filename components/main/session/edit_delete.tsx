@@ -1,6 +1,6 @@
 'use client'
 import { Button } from '@/components/ui/button'
-import { Edit, TrashIcon } from 'lucide-react'
+import { TrashIcon } from 'lucide-react'
 import React from 'react'
 import {
     AlertDialog,
@@ -15,25 +15,13 @@ import {
  } from "@/components/ui/alert-dialog"
 import { deleteSession } from '@/app/(main)/session/[sessionId]/action'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { ComboboxDemo } from '../combobox'
-const EditDelete = ({sessionId , currStatus } : {sessionId : string , currStatus : string }) => {
-    const router = useRouter()
+import SessionForm from '../edit-session/session-form'
+const EditDelete = ({session} : {session : any}) => {
+  const router = useRouter()
   return (
     <div className="flex gap-5">
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-        <Link href={`/edit-session/${sessionId}`}>
-    <Button size="icon" variant="outline"> <Edit className="w-4 h-4"/> </Button>
-    </Link>
-        </TooltipTrigger>
-        <TooltipContent className='bg-black text-white font-bold text-sm dark:bg-white dark:text-black rounded-xl p-2'>
-          <p>Edit your session</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+   <SessionForm session={session}/>
     <AlertDialog >
       <AlertDialogTrigger asChild>
       <Button className="bg-rose-500 text-white hover:text-red-500" size="icon"> 
@@ -50,12 +38,12 @@ const EditDelete = ({sessionId , currStatus } : {sessionId : string , currStatus
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel className='rounded-md font-bold'>Cancel</AlertDialogCancel>
-          <AlertDialogAction className='bg-rose-500 text-white font-bold hover:text-red-500 rounded-md' onClick={() => {deleteSession(sessionId) 
+          <AlertDialogAction className='bg-rose-500 text-white font-bold hover:text-red-500 rounded-md' onClick={() => {deleteSession(session.id) 
           router.refresh()}}>Delete</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-    <ComboboxDemo sessionId={sessionId} currStatus={currStatus}/>
+    <ComboboxDemo sessionId={session.id} currStatus={session.status}/>
     </div>
   )
 }

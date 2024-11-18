@@ -2,7 +2,7 @@ import EditProfile from "@/components/main/profile/edit-profile";
 import { Badge } from "@/components/ui/badge";
 import { db } from "@/db/migrate";
 import { userTable } from "@/db/schema";
-import { eq, sql } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import Image from "next/image";
 import Link from "next/link";
 import { FaGithub, FaLocationDot, FaTags } from "react-icons/fa6"
@@ -63,26 +63,14 @@ const user = await initialProfile()
         <Separator className="bg-slate-300"/>
       </div>
      </div>
-     <Tabs className="w-full">
-       <TabsList defaultValue="sessions" className="w-full flex justify-start gap-5">
+     <Tabs defaultValue="sessions" className="w-full">
+       <TabsList className="w-full flex justify-start gap-5">
          <TabsTrigger value="sessions" className="text-lg font-semibold glassmorphism p-2">Sessions</TabsTrigger>
          <TabsTrigger value="posts" className="text-lg font-semibold glassmorphism p-2">Posts</TabsTrigger>
-         {/* <TooltipProvider>
-        <Tooltip>
-      <TooltipTrigger asChild>
-      <Link href={'/create-session'} className="p-2 bg-slate-100 rounded-full dark:bg-zinc-700">
-      <Plus className="h-5 w-5"/>
-      </Link>
-      </TooltipTrigger>
-      <TooltipContent className="text-xs font-bold bg-slate-100 dark:bg-zinc-800 p-2">
-        Create session
-      </TooltipContent>
-      </Tooltip>
-      </TooltipProvider> */}
        </TabsList>
        <TabsContent value="sessions">
        <div className="w-full h-max flex flex-col gap-3">
-      <div className="w-full h-max flex items-center m-2 mt-5 gap-5 flex-wrap">
+      <div className="w-full h-max grid items-center m-2 mt-5 gap-5 grid-cols-2">
         {profile?.sessions.map((session) => (
           <ProfileSessionCard key={session.id} session={session}/>
         ))}
@@ -91,7 +79,7 @@ const user = await initialProfile()
        </TabsContent>
        <TabsContent value="posts">
        <div className="w-full h-max flex flex-col gap-3">
-      <div className="w-full h-max flex items-center mt-5 gap-5 flex-wrap">
+      <div className="w-full h-max grid items-center mt-5 gap-5 grid-cols-3">
         {profile?.posts.map((post) => (
           <ProfileSessionCard key={post.id} session={post}/>
         ))}

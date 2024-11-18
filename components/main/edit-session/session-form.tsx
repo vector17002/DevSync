@@ -12,9 +12,19 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { useParams, useRouter } from "next/navigation"
 import { updateSession } from "@/app/(main)/edit-session/[sessionId]/action"
+import { Edit } from "lucide-react"
 
 const formSchema = z.object({
    name: z.string().min(2, {
@@ -30,34 +40,39 @@ const formSchema = z.object({
   githubRepo: z.string(),
   skills: z.string(),
 })
- const SessionForm = () => {   
-    const router = useRouter()
-    const { sessionId } = useParams()
+ const SessionForm = ({session} : {session : any}) => {   
      const form = useForm<z.infer<typeof formSchema>>({
       resolver: zodResolver(formSchema),
       defaultValues: {
-        name: "",
-        details: "",
-        githubRepo: "",
-        skills: ""
+        name: `${session.name}`,
+        details: `${session.details}`,
+        githubRepo: `${session.githubRepo}`,
+        skills: `${session.skills}`
       },
     })
       async function onSubmit(values: z.infer<typeof formSchema>)  {
         await updateSession( 
           //@ts-ignore
-          sessionId, values)
-        router.push('/debugcohort')
+          session.id, values)
       }
     return(
+    <Dialog>
+      <DialogTrigger asChild>
+       <Button size="icon" variant="outline"> <Edit className="w-4 h-4"/> </Button>
+    </DialogTrigger>
+    <DialogContent className="sm:max-w-xl bg-white dark:bg-black">
+     <DialogHeader className="items-center">
+          <DialogTitle className="text-xl">Edit session</DialogTitle>
+        </DialogHeader>
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 w-3/5 mt-10 mb-10">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 w-full">
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-semibold text-lg">Name</FormLabel>
-              <FormControl className="text-slate-500 dark:text-slate-300">
+              <FormControl className="text-neutral-600 dark:text-neutral-300">
                 <Input placeholder="Name" {...field} className="rounded-xl"/>
               </FormControl>
               <FormMessage className="text-rose-400"/>
@@ -70,10 +85,10 @@ const formSchema = z.object({
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-semibold text-lg">Description</FormLabel>
-              <FormControl className="text-slate-500 dark:text-slate-300">
+              <FormControl className="text-neutral-600 dark:text-neutral-300">
                 <Input placeholder="Description" {...field} className="rounded-xl"/>
               </FormControl>
-              <FormDescription>Please give a brief description of your project and the bug you are facing</FormDescription>
+              <FormDescription>Please give a precise short description of your project</FormDescription>
               <FormMessage className="text-rose-400"/>
             </FormItem>
           )}
@@ -84,10 +99,10 @@ const formSchema = z.object({
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-semibold text-lg">Github Repository</FormLabel>
-              <FormControl className="text-slate-500 dark:text-slate-300">
+              <FormControl className="text-neutral-600 dark:text-neutral-300">
                 <Input placeholder="Github Repository url" {...field} className="rounded-xl" />
               </FormControl>
-              <FormDescription>Please provide github repository url so that collaborators can have a better idea of the project</FormDescription>
+              <FormDescription>Please provide github repository url</FormDescription>
               <FormMessage className="text-rose-400"/>
             </FormItem>
           )}
@@ -98,7 +113,7 @@ const formSchema = z.object({
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-semibold text-lg">Skills</FormLabel>
-              <FormControl className="text-slate-500 dark:text-slate-300">
+              <FormControl className="text-neutral-600 dark:text-neutral-300">
                 <Input placeholder="Tags" {...field} className="rounded-xl" />
               </FormControl>
               <FormDescription>Please add relevant skills seperated with commas</FormDescription>
@@ -106,9 +121,18 @@ const formSchema = z.object({
             </FormItem>
           )}
         />
-        <Button type="submit" className="px-4 rounded-xl dark:text-white dark:bg-black font-bold  hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black dark:border-slate-500 border-2">Submit</Button>
+       
       </form>
     </Form>
+    <DialogFooter className="sm:justify-start">
+          <Button type="button" className="px-4 rounded-xl dark:text-white dark:bg-black font-bold  hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black dark:border-slate-500 border-2" onClick={form.handleSubmit(onSubmit)}>
+          <DialogClose>
+              Update
+          </DialogClose>
+          </Button>
+        </DialogFooter>
+    </DialogContent>
+    </Dialog>
     )
 }
 

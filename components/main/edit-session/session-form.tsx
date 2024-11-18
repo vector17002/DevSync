@@ -23,7 +23,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { updateSession } from "@/app/(main)/edit-session/[sessionId]/action"
+import { updateSession } from "@/app/(main)/edit-session/action"
 import { Edit } from "lucide-react"
 
 const formSchema = z.object({

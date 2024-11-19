@@ -16,6 +16,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation"
 import { createSessionAction } from "@/app/(main)/create-session/action"
+import toast from "react-hot-toast"
+import { revalidatePath } from "next/cache"
 
 const formSchema = z.object({
    name: z.string().min(2, {
@@ -48,8 +50,17 @@ const formSchema = z.object({
       })
      
       async function onSubmit(values: z.infer<typeof formSchema>)  {
-        await createSessionAction(values)
+        // await createSessionAction(values)
+        await toast.promise(
+          //@ts-ignore
+         createSessionAction(values),{
+            loading: "Creating session",
+            success: <b>Created session succesfully</b>,
+            error: <b>Something went wrong!! <br/> Unable to create session</b>
+          }
+        )
         router.push('/debugcohort')
+        router.refresh()
       }
     return(
     <Form {...form}>

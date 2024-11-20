@@ -16,7 +16,6 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -25,6 +24,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { updateSession } from "@/app/(main)/edit-session/action"
 import { Edit } from "lucide-react"
+import { toast } from "react-hot-toast"
 
 const formSchema = z.object({
    name: z.string().min(2, {
@@ -34,7 +34,7 @@ const formSchema = z.object({
   }),
   details:z.string().min(2, {
     message: "Please specify something about your project.",
-  }).max(80, {
+  }).max(100, {
     message: "Details should be of max 100 characters"
   }), 
   githubRepo: z.string(),
@@ -51,9 +51,18 @@ const formSchema = z.object({
       },
     })
       async function onSubmit(values: z.infer<typeof formSchema>)  {
-        await updateSession( 
-          //@ts-ignore
-          session.id, values)
+        // await updateSession( 
+        //   //@ts-ignore
+        //   session.id, values)
+        //   toast.success("Edited session succesfully")
+          toast.promise(
+            //@ts-ignore
+            updateSession(session.id, values),{
+              loading: "Editing session",
+              success: <p className="font-semibold text-base">Edited session succesfully</p>,
+              error: <p className="font-semibold text-base">Something went wrong!!</p>
+            }
+          )
       }
     return(
     <Dialog>
@@ -126,7 +135,7 @@ const formSchema = z.object({
     </Form>
     <DialogFooter className="sm:justify-start">
           <Button type="button" className="px-4 rounded-xl dark:text-white dark:bg-black font-bold  hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black dark:border-slate-500 border-2" onClick={form.handleSubmit(onSubmit)}>
-          <DialogClose>
+<DialogClose>
               Update
           </DialogClose>
           </Button>

@@ -18,6 +18,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { setStatusForSession } from "@/app/(main)/session/[sessionId]/action"
+import toast from "react-hot-toast"
 
 const frameworks = [
   {
@@ -61,9 +62,15 @@ export function ComboboxDemo({sessionId , currStatus} : {sessionId: string , cur
                   key={framework.value}
                   value={framework.value}
                   onSelect={async (currentValue) => {
-                   
+                   toast.promise(
                     //@ts-ignore
-                    await setStatusForSession(sessionId , currentValue)
+                    setStatusForSession(sessionId , currentValue),
+                    {
+                      loading: "Changing status",
+                      success: <p className="font-semibold text-base">Status changed</p>,
+                      error: <p>Something went wrong!!</p>
+                    }
+                   )
                     setValue(currentValue === value ? "" : currentValue)
                     setOpen(false)
                   }}

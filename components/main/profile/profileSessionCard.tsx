@@ -24,7 +24,7 @@ const ProfileSessionCard = async ({session} : {session : any}) => {
     </Badge></CardTitle>
     <CardDescription className="text-sm">{session.details}</CardDescription>
   </CardHeader>
-  <CardContent className="flex mt-2 justify-start items-center gap-5 h-4">
+  <CardContent className="flex mt-3 justify-between items-center gap-5 h-4">
     <Link 
     href={session.githubRepo} className="font-semibold flex hover:text-indigo-500 text-xs" target="_blank">
     <FaGithub className="w-7 h-7"/>
@@ -34,7 +34,7 @@ const ProfileSessionCard = async ({session} : {session : any}) => {
       <EditDelete session={session}/>
     )}
   </CardContent>
-  <CardFooter className="flex items-center justify-between gap-2 text-xs">
+  <CardFooter>
   </CardFooter>
 </Card>
   )

@@ -17,6 +17,7 @@ import { deleteSession } from '@/app/(main)/session/[sessionId]/action'
 import { useRouter } from 'next/navigation'
 import { ComboboxDemo } from '../combobox'
 import SessionForm from '../edit-session/session-form'
+import toast from 'react-hot-toast'
 const EditDelete = ({session} : {session : any}) => {
   const router = useRouter()
   return (
@@ -38,7 +39,12 @@ const EditDelete = ({session} : {session : any}) => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel className='rounded-md font-bold'>Cancel</AlertDialogCancel>
-          <AlertDialogAction className='bg-rose-500 text-white font-bold hover:text-red-500 rounded-md' onClick={() => {deleteSession(session.id) 
+          <AlertDialogAction className='bg-rose-500 text-white font-bold hover:text-red-500 rounded-md' onClick={() => {
+           toast.promise( deleteSession(session.id), {
+            loading: "Deleting session",
+            success: <p className="font-semibold text-base">Session deleted</p>,
+            error: <p className="font-semibold text-base">Something went wrong!!</p>
+           } )
           router.refresh()}}>Delete</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

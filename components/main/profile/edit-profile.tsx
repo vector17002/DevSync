@@ -16,6 +16,7 @@ import {
   import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { updateProfile } from "@/app/(main)/profile/[profileId]/action";
+import toast from "react-hot-toast";
   
   
   const formSchema = z.object({
@@ -48,7 +49,14 @@ const EditProfile = ( { profile } : {profile : any}) => {
       })
 
      const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        await updateProfile(profile.id, values)
+      toast.promise(
+        updateProfile(profile.id, values),
+        {
+           loading: "Updating profile",
+           success: <p className="font-semibold text-base">Updated successfully</p>,
+           error: <p className="font-semibold text-base">Something went wrong!!</p>
+        },
+      )
      }
   return (
     <Dialog>

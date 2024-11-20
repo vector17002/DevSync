@@ -55,8 +55,8 @@ const formSchema = z.object({
           //@ts-ignore
          createSessionAction(values),{
             loading: "Creating session",
-            success: <b>Created session succesfully</b>,
-            error: <b>Something went wrong!! <br/> Unable to create session</b>
+            success: <p className="font-semibold text-base">Created session succesfully</p>,
+            error: <p className="font-semibold text-base">Something went wrong!! <br/> Unable to create session</p>
           }
         )
         router.push('/debugcohort')

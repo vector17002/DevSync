@@ -59,8 +59,8 @@ const formSchema = z.object({
             //@ts-ignore
             updateSession(session.id, values),{
               loading: "Editing session",
-              success: <b>Edited session succesfully</b>,
-              error: <b>Something went wrong</b>
+              success: <p className="font-semibold text-base">Edited session succesfully</p>,
+              error: <p className="font-semibold text-base">Something went wrong!!</p>
             }
           )
       }

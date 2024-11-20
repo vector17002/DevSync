@@ -26,7 +26,7 @@ export default function RootLayout({
         <link rel="icon" href="/assets/icons2.png"/>
       </head>
       <body className={inter.className} >
-      <Toaster position="bottom-right"
+      <Toaster position="top-center"
               reverseOrder={false}/>
         <ThemeProvider 
             attribute="class"

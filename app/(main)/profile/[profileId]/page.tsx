@@ -31,7 +31,7 @@ const user = await initialProfile()
   return (
     <main className="flex max-w-6xl h-max my-[2rem] mx-auto flex-row gap-3 justify-center">
      <div className="w-[18rem] h-full px-5 flex glassmorphism gap-4 flex-col">
-      <div className="w-max h-full flex justify-center gap-4 items-center">
+      <div className="w-max h-full flex justify-center gap-4 items-center mt-5">
       <Image 
       //@ts-ignore
        src={profile?.image_url} alt="Profile Img" width={80} height={80} className="rounded-xl object-contain"/>
@@ -70,20 +70,28 @@ const user = await initialProfile()
        </TabsList>
        <TabsContent value="sessions">
        <div className="w-full h-max flex flex-col gap-3">
-      <div className="w-full h-max grid items-center m-2 mt-5 gap-5 grid-cols-2">
+      { //@ts-ignore
+      (profile.sessions.length > 0)  && (<div className="w-full h-max grid items-center m-2 mt-5 gap-5 grid-cols-2">
         {profile?.sessions.map((session) => (
           <ProfileSessionCard key={session.id} session={session}/>
         ))}
-      </div>
+      </div>)}
+      {profile?.sessions.length === 0 && (
+        <div>No Sessions found</div>
+      )}
      </div>
        </TabsContent>
        <TabsContent value="posts">
        <div className="w-full h-max flex flex-col gap-3">
-      <div className="w-full h-max grid items-center mt-5 gap-5 grid-cols-3">
-        {profile?.posts.map((post) => (
-          <ProfileSessionCard key={post.id} session={post}/>
+       { //@ts-ignore
+      (profile?.posts.length > 0)  && (<div className="w-full h-max grid items-center m-2 mt-5 gap-5 grid-cols-2">
+        {profile?.posts.map((session) => (
+          <ProfileSessionCard key={session.id} session={session}/>
         ))}
-      </div>
+      </div>)}
+      {profile?.posts.length === 0 && (
+        <div>No Posts found</div>
+      )}
      </div>
        </TabsContent>
      </Tabs>

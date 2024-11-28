@@ -4,7 +4,6 @@ import { redirectToSignIn, WebhookEvent } from '@clerk/nextjs/server'
 import { db } from '@/db/migrate'
 import { userTable } from '@/db/schema'
 import { eq } from 'drizzle-orm'
-import { redirect } from 'next/dist/server/api-utils'
 import { revalidatePath } from 'next/cache'
 
 export async function POST(req: Request) {

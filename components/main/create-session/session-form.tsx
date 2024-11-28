@@ -99,7 +99,7 @@ const formSchema = z.object({
             <FormItem>
               <FormLabel className="font-semibold text-lg">Github Repository</FormLabel>
               <FormControl className="text-slate-500 dark:text-slate-300">
-                <Input placeholder="Github Repository url" {...field} className="rounded-xl" />
+                <Input type="url" placeholder="Github Repository url" {...field} className="rounded-xl" />
               </FormControl>
               <FormDescription>Please provide github repository url so that collaborators can have a better idea of the project</FormDescription>
               <FormMessage className="text-rose-400"/>

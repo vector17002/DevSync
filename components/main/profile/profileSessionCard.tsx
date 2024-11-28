@@ -25,10 +25,14 @@ const ProfileSessionCard = async ({session} : {session : any}) => {
     <CardDescription className="text-sm">{session.details}</CardDescription>
   </CardHeader>
   <CardContent className="flex mt-3 justify-between items-center gap-5 h-4">
-    <Link 
-    href={session.githubRepo} className="font-semibold flex hover:text-indigo-500 text-xs" target="_blank">
-    <FaGithub className="w-7 h-7"/>
-    </Link>
+  {
+      //@ts-ignore
+      user.id !== session.hostId && session.githubRepo !== " " &&
+   (<Link 
+    href={session.githubRepo} className="font-semibold flex hover:text-indigo-500 text-xs gap-1 items-center py-2 mb-5" target="_blank">
+    <FaGithub className="w-6 h-6"/>
+    <span className="bg-neutral-100 dark:bg-neutral-700 p-2">{session.githubRepo}</span>
+    </Link>)}
     {//@ts-ignore
     user?.id === session.hostId && (
       <EditDelete session={session}/>

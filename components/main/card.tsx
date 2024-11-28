@@ -36,13 +36,16 @@ const tags = data.skills?.toLowerCase().split(',')
       <Badge className="bg-black text-white rounded-xl hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white" >{tag}</Badge></Link>
     ))}
     </div>
-    <div className="flex items-center gap-5">
-    <Link 
+    <div className="flex items-center justify-between">
+    {
+      //@ts-ignore
+      user.id !== data.hostId.id && data.githubRepo !== " " &&
+   (<Link 
     //@ts-ignore 
-    href={data.githubRepo} className="font-semibold flex hover:text-indigo-500 text-xs gap-1 items-center" target="_blank">
-    <FaGithub className="w-5 h-5"/>
-     Github
-    </Link>
+    href={data.githubRepo} className="font-semibold flex hover:text-indigo-500 text-xs gap-1 items-center py-2 mb-5" target="_blank">
+    <FaGithub className="w-6 h-6"/>
+    <span className="bg-neutral-100 dark:bg-neutral-700 p-2">{data.githubRepo}</span>
+    </Link>)}
    {
      //@ts-ignore
     user.id === data.hostId.id && (

@@ -3,11 +3,13 @@ import {
     Call,
     CallControls,
     CallParticipantsList,
+    OwnCapability,
     SpeakerLayout,
     StreamCall,
     StreamTheme,
     StreamVideo,
     StreamVideoClient,
+    useCallStateHooks,
   } from '@stream-io/video-react-sdk';
 import { useEffect, useState } from 'react';
 import "@stream-io/video-react-sdk/dist/css/styles.css"
@@ -22,6 +24,7 @@ const apiKey = process.env.GET_STREAM_API_KEY!;
     const [call, setCall] = useState<Call | null>(null)
     const [showParticipants, setShowParticipants] = useState<boolean>(false)
     const router = useRouter()
+    const { useHasPermissions} = useCallStateHooks();
   useEffect(() => {
     const client = new StreamVideoClient({ 
       apiKey : apiKey,
@@ -34,7 +37,7 @@ const apiKey = process.env.GET_STREAM_API_KEY!;
   });
     setClient(client)
     
-    const call = client?.call('default', sessionId)
+    const call = client?.call('development', sessionId)
     call?.join({create: true});
     setCall(call)
     
@@ -53,7 +56,7 @@ const apiKey = process.env.GET_STREAM_API_KEY!;
           <CallControls onLeave={() => {
             router.push('/debugcohort')
           }}/>
-         {showParticipants && ( <div className='justify-center flex text-slate-400 mt-5'>
+         {showParticipants && ( <div className='justify-center flex text-neutral-500 mt-5'>
           <CallParticipantsList 
           onClose={() => setShowParticipants(!showParticipants)}/>
           </div>)}

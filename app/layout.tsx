@@ -35,8 +35,8 @@ export default function RootLayout({
 
           <Navbar/>
           <NextTopLoader/>
-          <div className='main'>
-          </div>
+          {/* <div className='main'>
+          </div> */}
           <main>
           {children}
           </main>

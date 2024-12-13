@@ -22,8 +22,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { updateSession } from "@/app/(main)/edit-session/action"
-import { Edit } from "lucide-react"
+import { updateSession } from "@/app/(main)/session/action"
 import { toast } from "react-hot-toast"
 
 const formSchema = z.object({
@@ -38,7 +37,14 @@ const formSchema = z.object({
     message: "Details should be of max 100 characters"
   }), 
   githubRepo: z.string(),
-  skills: z.string(),
+  skills: z.string()
+    .toLowerCase()
+    .refine((val) => val.split(',').length <= 4, {
+      message: "You can only specify up to 4 skills"
+    })
+    .refine((val) => val.split(',').every(skill => skill.trim().length > 0), {
+      message: "Skills cannot be empty"
+    }),
 })
  const SessionForm = ({session} : {session : any}) => {   
      const form = useForm<z.infer<typeof formSchema>>({
@@ -66,8 +72,8 @@ const formSchema = z.object({
       }
     return(
     <Dialog>
-      <DialogTrigger asChild>
-       <Button size="icon" variant="outline"> <Edit className="w-4 h-4"/> </Button>
+      <DialogTrigger asChild className="hover:bg-indigo-500 hover:text-white rounded-md p-2 w-full">
+        <p>Edit</p>
     </DialogTrigger>
     <DialogContent className="sm:max-w-xl bg-white dark:bg-black">
      <DialogHeader className="items-center">
@@ -125,7 +131,7 @@ const formSchema = z.object({
               <FormControl className="text-neutral-600 dark:text-neutral-300">
                 <Input placeholder="Tags" {...field} className="rounded-xl" />
               </FormControl>
-              <FormDescription>Please add relevant skills seperated with commas</FormDescription>
+              <FormDescription>Please add up to 4 relevant skills separated with commas</FormDescription>
               <FormMessage className="text-rose-400"/>
             </FormItem>
           )}

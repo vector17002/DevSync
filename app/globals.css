@@ -8,6 +8,8 @@
  box-sizing: border-box;
  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
  scrollbar-width: none;  
+ scroll-behavior: smooth;
+ scroll-padding-top: 125px;
 }
 
 body{
@@ -15,7 +17,6 @@ body{
   -moz-user-select:-moz-none;
   -ms-user-select:none;
   user-select:none;
- 
 }
 
 .main {
@@ -51,7 +52,7 @@ body{
   }
 
   .glassmorphism {
-    @apply rounded-xl border border-gray-200 dark:border-gray-900 bg-white/10 dark:bg-black/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-1 px-5;
+    @apply border border-gray-200 dark:border-gray-900 bg-white/10 dark:bg-black/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-1 px-5;
   }
 
   .sticky-nav{

@@ -3,7 +3,7 @@ import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/theme-provider";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/main/navbar";
 import NextTopLoader from 'nextjs-toploader';
 import{ Toaster } from 'react-hot-toast'
 
@@ -23,7 +23,7 @@ export default function RootLayout({
     <ClerkProvider>
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/assets/icons2.png"/>
+        <link rel="icon" href="/assets/Logo.png"/>
       </head>
       <body className={inter.className} >
       <Toaster position="top-center"
@@ -33,7 +33,7 @@ export default function RootLayout({
             defaultTheme="light"
             enableColorScheme>
 
-          <Navbar/>
+          {/* <Navbar/> */}
           <NextTopLoader/>
           {/* <div className='main'>
           </div> */}

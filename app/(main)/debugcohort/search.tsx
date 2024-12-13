@@ -56,7 +56,7 @@ export function SearchBar() {
               <FormControl>
                 <Input
                   {...field}
-                  className="w-[40vw] rounded-xl"
+                  className="w-[40vw] rounded-lg border-neutral-500"
                   placeholder="Filter sessions by keywords, such as typescript, python etc."
                 />
               </FormControl>

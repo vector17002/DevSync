@@ -64,11 +64,11 @@ const user = await initialProfile()
       </div>
      </div>
      <Tabs defaultValue="sessions" className="w-full">
-       <TabsList className="w-full flex justify-start gap-5">
-         <TabsTrigger value="sessions" className="text-lg font-semibold glassmorphism p-2">Sessions</TabsTrigger>
-         <TabsTrigger value="posts" className="text-lg font-semibold glassmorphism p-2">Posts</TabsTrigger>
+       <TabsList className="w-full justify-start gap-3">
+         <TabsTrigger value="sessions" className="text-lg font-semibold glassmorphism p-2 rounded-none">Sessions</TabsTrigger>
+         <TabsTrigger value="posts" className="text-lg font-semibold glassmorphism p-2 rounded-none">Posts</TabsTrigger>
        </TabsList>
-       <TabsContent value="sessions">
+       <TabsContent value="sessions" className="flex flex-col">
        <div className="w-full h-max flex flex-col gap-3">
       { //@ts-ignore
       (profile.sessions.length > 0)  && (<div className="w-full h-max grid items-center m-2 mt-5 gap-5 grid-cols-2">

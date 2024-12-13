@@ -31,9 +31,14 @@ const formSchema = z.object({
     message: "Details should be of max 100 characters"
   }), 
   githubRepo: z.string(),
-  skills: z.string().toLowerCase(),
-  // startAt: z.string().date(),
-  // endAt: z.string().date()
+  skills: z.string()
+    .toLowerCase()
+    .refine((val) => val.split(',').length <= 4, {
+      message: "You can only specify up to 4 skills"
+    })
+    .refine((val) => val.split(',').every(skill => skill.trim().length > 0), {
+      message: "Skills cannot be empty"
+    }),
 })
  const SessionForm = () => {    
     const router = useRouter()
@@ -115,7 +120,7 @@ const formSchema = z.object({
               <FormControl className="text-slate-500 dark:text-slate-300">
                 <Input placeholder="Tags" {...field} className="rounded-xl" />
               </FormControl>
-              <FormDescription>Please add relevant skills seperated with commas</FormDescription>
+              <FormDescription>Please add up to 4 relevant skills separated with commas</FormDescription>
               <FormMessage className="text-rose-400"/>
             </FormItem>
           )}

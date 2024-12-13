@@ -2,7 +2,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { initialProfile } from "@/lib/initial-profile"
-import EditDelete from "./edit_delete"
 import { FaGithub } from "react-icons/fa6"
 import Invite from "../invite"
 
@@ -11,7 +10,7 @@ const SessionInformation = async ({session} : {session : any}) => {
   const tags = session.skills?.toLowerCase().split(',')
 
   return (
-    <Card className="min-w-[25vw] h-[50vh] flex flex-col justify-between">
+    <Card className="min-w-[25vw] max-w-[27vw] h-[50vh] flex flex-col justify-evenly dark:border-neutral-600">
   <CardHeader>
     <CardTitle className="text-xl font-bold">{session.name}</CardTitle>
     <CardDescription>{session.details}</CardDescription>
@@ -27,22 +26,6 @@ const SessionInformation = async ({session} : {session : any}) => {
     ))}
     </div>
     <Invite url={`http://localhost:3000/session/${session.id}`}/>
-    <div className="flex justify-between items-center w-full">
-    {
-      //@ts-ignore
-      user.id !== session.hostId && session.githubRepo !== " " &&
-   (<Link 
-    href={session.githubRepo} className="font-semibold flex hover:text-indigo-500 text-xs gap-1 items-center py-2 mb-5 w-full" target="_blank">
-    <FaGithub className="w-6 h-6"/>
-    <span className="bg-neutral-100 dark:bg-neutral-700 p-2 w-full">{session.githubRepo}</span>
-    </Link>)}
-    {
-    //@ts-ignore 
-    user.id === session.hostId && (
-      <EditDelete session={session.id}/>
-    )
-    }
-    </div>
   </CardContent>
 </Card>
   )

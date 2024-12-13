@@ -1,14 +1,14 @@
-import { FeaturesSectionDemo } from "@/components/main/feature";
-import { GlobeDemo } from "@/components/main/globe-middle";
-import { HeroParallax } from "@/components/main/hero-parallax";
-import { products} from "@/lib/constants";
-
+import { BentoGridDemo } from "@/components/main/bentogrid";
+import  Hero from "@/components/main/hero";
+import Navbar from "@/components/main/homenav";
+import Footer from "@/components/main/footer";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
-      <HeroParallax products={products}/>
-      <GlobeDemo/>
-      <FeaturesSectionDemo />
+      <Navbar />
+      <Hero/>
+      <BentoGridDemo/>
+      <Footer/>
     </main>
   );
 }

@@ -10,5 +10,4 @@ const CustomButton = ({value , link , className} : {value: string , link ?: stri
     </Button>
   )
 }
-
-export default CustomButton
+export default CustomButton 

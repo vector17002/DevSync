@@ -1,6 +1,6 @@
 'use server'
 import { db } from '@/db/migrate';
-import { sessionTable } from '@/db/schema';
+import { sessionTable, SessionTableType } from '@/db/schema';
 import { initialProfile } from '@/lib/initial-profile';
 import { eq } from 'drizzle-orm';
 import { revalidatePath } from 'next/cache';
@@ -27,7 +27,7 @@ export async function deleteSession(sessionId: string) {
 }
 
 export async function setStatusForSession(sessionId: string, value: "compeleted" | "not-completed" | "on-going"){
-    if(value !== "compeleted"){
+    if(value !== "compeleted" && value !== "not-completed"){
     //@ts-ignore
     await db.update(sessionTable).set({status : value}).where(eq(sessionTable.id, sessionId))
 }else{
@@ -37,3 +37,4 @@ export async function setStatusForSession(sessionId: string, value: "compeleted"
     revalidatePath('/debugcohort')
     revalidatePath('/profile')
 }
+

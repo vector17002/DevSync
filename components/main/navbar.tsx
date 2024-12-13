@@ -1,9 +1,9 @@
 import Link from "next/link"
-import { ModeToggle } from "./mode-toggle"
+import { ModeToggle } from "../mode-toggle"
 import Image from "next/image"
 import { UserButton } from "@clerk/nextjs"
 import { dark } from "@clerk/themes"
-import CurrentPage from "../lib/currentPage"
+import CurrentPage from "../../lib/currentPage"
 import { cn } from "@/lib/utils"
 import { initialProfile } from "@/lib/initial-profile"
 
@@ -11,15 +11,11 @@ import { initialProfile } from "@/lib/initial-profile"
 const Navbar = async () => {
   const user = await initialProfile()
   return (
-    <div className="flex w-full max-w-8xl mx-auto justify-between px-10 py-2 bg-slate-50 dark:bg-gray-950 sticky-nav">
-        <Link href={"/"} >
-         <div className="dark:flex hidden">
-          <Image src="/assets/image.png" height={160} width={180} className="rounded-full" alt={"logo"}/>
-          </div>
-          <div className="visible dark:hidden">
-          <Image src="/assets/logofinall.png" height={160} width={180} className="rounded-full" alt={"logo"}/>
-          </div>
-        </Link>
+    <div className="sticky top-0 w-full bg-slate-50 dark:bg-gray-950">
+    <div className="flex w-full max-w-6xl mx-auto justify-between px-10 py-2 bg-slate-50 dark:bg-gray-950 sticky-nav">
+          <Link href={"/"} className="bg-black rounded-full p-1">
+          <Image src="/assets/Logo.png" height={38} width={38} className="rounded-full" alt={"logo"}/>
+      </Link>
         <div className="flex flex-row gap-5 justify-center items-center">
         <ModeToggle/>
         <CurrentPage 
@@ -51,6 +47,7 @@ const Navbar = async () => {
           </div>
         </Link>
         </div>
+    </div>
     </div>
   )
 }

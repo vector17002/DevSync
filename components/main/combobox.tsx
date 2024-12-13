@@ -43,10 +43,9 @@ export function ComboboxDemo({sessionId , currStatus} : {sessionId: string , cur
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
-          variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-max justify-between "
+          className="w-full"
         >
           {currStatus ? frameworks.find((f) => f.value === currStatus)?.label : "Set Status"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />

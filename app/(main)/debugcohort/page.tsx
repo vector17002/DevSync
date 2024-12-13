@@ -31,7 +31,7 @@ const DebugCohort = async ({
         </div>
         <div className="flex gap-5 w-3/5 items-center">
         <Link href={'/create-session'}>
-        <Button className="w-full px-4 dark:text-white dark:bg-black font-bold  hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black dark:border-slate-500 border-2">Create session</Button>
+        <Button className="w-full px-4 bg-zinc-100 dark:text-white dark:bg-zinc-600 font-bold  hover:bg-zinc-800 hover:text-white dark:hover:bg-white dark:hover:text-black dark:border-neutral-600">Create session</Button>
         </Link>
         <SearchBar/>
         </div>

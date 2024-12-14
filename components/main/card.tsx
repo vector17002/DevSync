@@ -43,11 +43,12 @@ const tags = data.skills?.toLowerCase().split(',')
       <Badge className="bg-black text-white rounded-xl hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white" >{tag}</Badge></Link>
     ))}
     </div>
-    {data.githubRepo !== " " &&
+    { data.githubRepo !== " " &&
    (<Link 
-    //@ts-ignore 
-    href={data.githubRepo} className="font-semibold flex hover:text-indigo-500 text-xs gap-1 items-center py-2" target="_blank">
-    <span className="bg-neutral-100 dark:bg-neutral-700 p-2">{data.githubRepo}</span>
+    //@ts-ignore
+    href={data.githubRepo} className="font-semibold flex hover:text-indigo-500 text-xs gap-1 items-center py-2 mb-2 mt-2" target="_blank">
+    <FaGithub className="w-6 h-6"/>
+    <span className="bg-neutral-100 dark:bg-neutral-700 p-2">{data.githubRepo?.substring(0,40)}..</span>
     </Link>)}
   </CardContent>
   <CardFooter className="flex items-center justify-between gap-3 text-xs mt-5">

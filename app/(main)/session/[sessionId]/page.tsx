@@ -4,6 +4,7 @@ import { initialProfile } from '@/lib/initial-profile'
 import { sessionTable } from '@/db/schema'
 import { eq } from 'drizzle-orm'
 import SessionInformation from '@/components/main/session/sessionInformation'
+import ChatWindow from '@/components/main/session/chat'
 
 const SessionPage = async (props : {params : {sessionId : string}}) => {
   const user = await initialProfile()
@@ -19,7 +20,10 @@ const SessionPage = async (props : {params : {sessionId : string}}) => {
   return (
     <div className='w-full pr-8 flex justify-center gap-0 mt-10'>
       <VideoPlayer sessionId={sessionId} user={user}/>
+      <div className='flex flex-col gap-5'>
       <SessionInformation session={session}/>
+      <ChatWindow sessionId={sessionId} user={user}/>
+      </div>
     </div>
   )
 }

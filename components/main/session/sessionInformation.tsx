@@ -11,7 +11,7 @@ const SessionInformation = async ({session} : {session : any}) => {
   const tags = session.skills?.toLowerCase().split(',')
 
   return (
-  <Card className="min-w-[25vw] max-w-[27vw] h-[50vh] flex flex-col justify-start dark:border-neutral-600">
+  <Card className="min-w-[25vw] max-w-[27vw] h-max flex flex-col justify-start dark:border-neutral-600">
   <CardHeader>
     <CardTitle className="flex flex-row justify-between text-xl font-bold">
       <p>{session.name}</p>

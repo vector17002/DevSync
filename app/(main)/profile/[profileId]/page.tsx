@@ -12,8 +12,6 @@ import ProfileSessionCard from "@/components/main/profile/profileSessionCard";
 import FollowButton from "@/components/main/profile/followButton";
 import { Separator } from "@/components/ui/separator";
 import FollowersFollowing from "@/components/main/profile/followersFollowing";
-import { Plus, TableIcon } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Profile = async (props : { params : { profileId : string} }) => {
@@ -30,8 +28,8 @@ const user = await initialProfile()
 
   return (
     <main className="flex max-w-6xl h-max my-[2rem] mx-auto flex-row gap-3 justify-center">
-     <div className="w-[18rem] h-full px-5 flex glassmorphism gap-4 flex-col">
-      <div className="w-max h-full flex justify-center gap-4 items-center mt-5">
+     <div className="w-full max-w-[20rem] h-full px-5 flex glassmorphism gap-4 flex-col">
+      <div className="w-full h-full flex justify-start gap-4 items-center mt-5">
       <Image 
       //@ts-ignore
        src={profile?.image_url} alt="Profile Img" width={80} height={80} className="rounded-xl object-contain"/>
@@ -40,7 +38,7 @@ const user = await initialProfile()
         <p className="text-xs">{profile?.tagline}</p>
       </div>
       </div>
-      <div className="text-xs text-slate-600 dark:text-slate-200 font-semibold flex flex-col gap-5 justify-start max-w-[15rem]">
+      <div className="text-xs text-slate-600 dark:text-slate-200 font-semibold flex flex-col gap-5 justify-center w-full">
         <p>{profile?.bio}</p>
         { //@ts-ignoreundefined
         profile?.id == user.id ? (<EditProfile profile={profile}/>) : (<FollowButton userId={user.id} profileId={profileId} isFollowing={isFollowing}/>)}

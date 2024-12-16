@@ -4,7 +4,6 @@ import { db } from "@/db/migrate";
 import { sessionTable, SessionTableType } from "@/db/schema";
 import { initialProfile } from "@/lib/initial-profile";
 import { revalidatePath } from "next/cache";
-import { toast } from "react-hot-toast";
 
 export async function createSessionAction(session : Omit<SessionTableType , "hostId"> ){
     const user = await initialProfile()

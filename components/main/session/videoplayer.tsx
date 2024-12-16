@@ -14,13 +14,14 @@ import "@stream-io/video-react-sdk/dist/css/styles.css"
 import {generateToken } from '../../../app/(main)/session/[sessionId]/action';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
+import { BsPeople } from 'react-icons/bs';
+import { Dialog, DialogContent, DialogHeader, DialogTrigger } from '@/components/ui/dialog'
 
 const apiKey = process.env.GET_STREAM_API_KEY!;
 
   const VideoPlayer = ({sessionId , user} : {sessionId : string , user : any}) => {
     const [client, setClient] = useState<StreamVideoClient | null>(null)
     const [call, setCall] = useState<Call | null>(null)
-    const [showParticipants, setShowParticipants] = useState<boolean>(false)
     const router = useRouter()
   useEffect(() => {
     const client = new StreamVideoClient({ 
@@ -46,30 +47,30 @@ const apiKey = process.env.GET_STREAM_API_KEY!;
       <div className='w-full mb-10'>
       {client && call &&
       <StreamTheme className='w-full h-full'>
-      <div className='w-full text-white'>
+      <div className='w-full text-white -z-10'>
       <StreamVideo client={client}>
         <StreamCall call={call}>
           <div className='flex w-full flex-col'>
-          <div className='w-full'>
           <SpeakerLayout/>
+          <div className='flex justify-center items-center gap-5 w-full'>
           <CallControls onLeave={() => {
             router.push('/debugcohort')
           }}/>
-          </div>
-         {showParticipants && ( <div className='justify-center flex text-neutral-500 mt-5 w-full'>
+          {/* {showParticipants && ( <div className='flex text-neutral-500 mt-5 w-max items-center justify-center'>
           <CallParticipantsList 
           onClose={() => setShowParticipants(!showParticipants)}/>
           </div>)}
-          {!showParticipants && (
-            <div className='flex items-center justify-center mt-5'>
-            <Button onClick={() => {
-              setShowParticipants(!showParticipants)
-            }} className='dark:text-black dark:bg-white text-white bg-black hover:text-black dark:hover:text-white dark:hover:bg-black rounded-xl'>
-              Participants
-            </Button>
-            </div>
-          )}
+         */}
+        <Dialog>
+        <DialogTrigger className='dark:text-black dark:bg-white text-white bg-black hover:text-black dark:hover:text-white dark:hover:bg-black rounded-full p-2'>
+              <BsPeople className="w-5 h-5"/>
+        </DialogTrigger>
+        <DialogContent className='bg-white dark:bg-zinc-900 w-full max-w-sm dark:text-white font-extralight'>
+          <CallParticipantsList onClose={() => {}}/>
+        </DialogContent>
+      </Dialog>
           </div>
+         </div>
         </StreamCall>
       </StreamVideo>
       </div>

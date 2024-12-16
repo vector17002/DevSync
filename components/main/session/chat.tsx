@@ -40,27 +40,26 @@ const ChatWindow = ({sessionId , user} : {sessionId : string , user : any}) => {
         setClient(client)
        } 
        init()
-
-       if(client && channel){
-        return () => {
-            client.disconnectUser()
-        }
+       return () => {
+        client?.disconnectUser()
+        client?.channel('messaging', sessionId).delete()
        }
 }, [])
 
     if (!client) return <div>Loading...</div>;
 
     return (
-      <Chat client={client}>
+      <Chat client={client} customClasses={{
+        'messageList': 'h-[35vh] overflow-y-auto dark:bg-zinc-950 w-4/5 text-neutral-500',
+        'channel': 'dark:bg-zinc-950',
+      }}>
         <Channel 
         //@ts-ignore
         channel={channel}>
           <Window>
-            <ChannelHeader />
             <MessageList />
-            <MessageInput />
+            <MessageInput audioRecordingEnabled={true} />
           </Window>
-          <Thread />
         </Channel>
       </Chat>
     );

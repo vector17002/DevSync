@@ -11,7 +11,7 @@ import { initialProfile } from "@/lib/initial-profile"
 const Navbar = async () => {
   const user = await initialProfile()
   return (
-    <div className="sticky top-0 w-full bg-slate-50 dark:bg-gray-950 z-auto">
+    <div className=" sticky top-0 w-full bg-slate-50 dark:bg-gray-950 z-10">
     <div className="flex w-full max-w-6xl mx-auto justify-between px-10 py-2 bg-slate-50 dark:bg-gray-950 sticky-nav">
           <Link href={"/"} className="bg-black rounded-full p-1">
           <Image src="/assets/Logo.png" height={38} width={38} className="rounded-full" alt={"logo"}/>

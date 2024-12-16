@@ -18,9 +18,9 @@ const SessionPage = async (props : {params : {sessionId : string}}) => {
   })
   if(!session) return (<div className='text-center text-5xl justify-center font-bold h-full flex'>Session not found</div>)
   return (
-    <div className='w-full pr-8 flex justify-center gap-0 mt-10'>
+    <div className='w-full pr-8 flex justify-center gap-0 mt-2'>
       <VideoPlayer sessionId={sessionId} user={user}/>
-      <div className='flex flex-col gap-5'>
+      <div className='flex flex-col mb-10'>
       <SessionInformation session={session}/>
       <ChatWindow sessionId={sessionId} user={user}/>
       </div>

@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <AuroraBackground id="home">
+    <AuroraBackground>
       <motion.div
         initial={{ opacity: 0.0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -33,7 +33,7 @@ export default function Hero() {
             <ArrowRightIcon className="w-4 h-4"/>
           </Button>
           </Link>
-          <Link href={`#about`}>
+          <Link href={`#faq`}>
             <Button className="px-5 py-3 text-sm md:text-lg font-medium rounded-lg bg-white dark:bg-black w-full dark:text-white hover:bg-white dark:hover:bg-black border-2 border-neutral-500">
               Learn More
             </Button>

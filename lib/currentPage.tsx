@@ -11,7 +11,7 @@ const CurrentPage = ({ userId } : {userId: string}) =>{
 
     return (
        <Link href={`${pathToshow}`}>
-        <Button className="w-full px-4 rounded-md dark:text-white dark:bg-black font-bold  hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black dark:border-slate-500 border-2">
+        <Button className="w-full px-4 rounded-md dark:text-white dark:bg-black font-bold  hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black dark:border-slate-500 dark:border-2">
             {elementToshow}
         </Button>
        </Link>

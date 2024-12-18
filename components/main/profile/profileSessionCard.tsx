@@ -32,9 +32,10 @@ const ProfileSessionCard = async ({session} : {session : any}) => {
   <CardContent className="flex mt-3 justify-between items-center gap-5 h-4">
   { session.githubRepo !== " " &&
    (<Link 
-    href={session.githubRepo} className="font-semibold flex hover:text-indigo-500 text-xs gap-1 items-center py-2 mb-2 mt-2" target="_blank">
+    //@ts-ignore
+    href={session.githubRepo} className="font-semibold bg-slate-100 w-max px-2 rounded-md dark:bg-zinc-800 flex text-xs gap-1 items-center py-2 mb-2 mt-2" target="_blank">
     <FaGithub className="w-6 h-6"/>
-    <span className="bg-neutral-100 dark:bg-neutral-700 p-2">{session.githubRepo}</span>
+    Github Repository
     </Link>)}
   </CardContent>
   <CardFooter>

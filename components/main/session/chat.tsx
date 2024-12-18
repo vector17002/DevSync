@@ -46,7 +46,8 @@ const ChatWindow = ({sessionId , user} : {sessionId : string , user : any}) => {
        }
 }, [])
 
-    if (!client) return <div>Loading...</div>;
+    if (!client) return <div className="w-full h-[35vh] bg-slate-100 dark:bg-zinc-950">     
+    </div>;
 
     return (
       <Chat client={client} customClasses={{

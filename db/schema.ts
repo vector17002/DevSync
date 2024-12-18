@@ -47,6 +47,18 @@ export const commentsTable = pgTable("Comments",{
    parentId: uuid("parent").references(() : AnyPgColumn => commentsTable.id , {onDelete : "cascade"}),
 })
 
+export const testimonialsTable = pgTable("Testimonials", {
+   id: uuid("id").primaryKey().notNull().defaultRandom(),
+   fromUserId: varchar("from_user_id")
+     .notNull()
+     .references(() => userTable.id, { onDelete: "cascade" }), // User giving the testimonial
+   toUserId: varchar("to_user_id")
+     .notNull()
+     .references(() => userTable.id, { onDelete: "cascade" }), // User receiving the testimonial
+   content: text("content").notNull(), // Testimonial text
+   createdAt: timestamp("created_at").defaultNow(), // Auto timestamp for creation
+ });
+
 
 
 // RELATIONS
@@ -88,7 +100,11 @@ export const commentRelations = relations(commentsTable, ({one}) => ({
    })
 }))
 
+export const testimonialRelations = relations(testimonialsTable, ({many}) => ({
+   fromUserId: many(userTable),
+   toUserId: many(userTable)
+}))
+
 // TYPES
 export type UserTableType = typeof userTable.$inferInsert
 export type SessionTableType = typeof sessionTable.$inferInsert
-

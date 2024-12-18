@@ -15,3 +15,14 @@ export async function updateSession(sessionId : string , session : Omit<SessionT
     await db.update(sessionTable).set({...session}).where(eq(sessionTable.id,sessionId));
     revalidatePath("/debugcohort")
  }
+
+ export async function createSessionAction(session : Omit<SessionTableType , "hostId"> ){
+    const user = await initialProfile()
+
+    if(!user)
+        throw new Error("Please sign in to create a session")
+    
+    //@ts-ignore
+    await db.insert(sessionTable).values({...session , hostId : user.id})
+    revalidatePath("/debugcohort")
+}

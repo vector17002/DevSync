@@ -30,11 +30,13 @@ export const FollowerTile = async ({follower , user , isFollowing} : {follower :
    ) 
 }
 const FollowersFollowing = ({profile} : {profile : any}) => {
+  const followers = profile?.followers.filter((follower : string) => follower !== "")
+  const following = profile?.following.filter((following : string) => following !== "")
   return (
     <div className="w-full justify-between items-center flex">
       <Dialog>
         <DialogTrigger className='text-xs font-semibold hover:bg-zinc-200 dark:hover:bg-zinc-700 p-2'>
-          Followers : {profile?.followers?.length}
+          Followers : {followers?.length ? followers.length : 0}
         </DialogTrigger>
         <DialogContent className="sm:max-w-sm bg-white dark:bg-black">
           <DialogHeader className='font-bold items-center'>Followers</DialogHeader>
@@ -48,14 +50,14 @@ const FollowersFollowing = ({profile} : {profile : any}) => {
       </Dialog>
       <Dialog>
         <DialogTrigger className='text-xs font-semibold hover:bg-zinc-200 dark:hover:bg-zinc-700 p-2'>
-          Following : {profile?.following?.length}
+          Following : {following?.length ? following.length : 0}
         </DialogTrigger>
         <DialogContent className="sm:max-w-sm bg-white dark:bg-black">
           <DialogHeader className='font-bold items-center'>Following</DialogHeader>
           <div className='flex flex-col justify-between items-center w-full overflow-y-scroll max-h-xl scroll-smooth gap-3'>
           {//@ts-ignore
           profile?.following.map((following) => (
-             <FollowerTile key={following} follower={following} user={profile.id} isFollowing={true}/>
+            <FollowerTile key={following} follower={following} user={profile.id} isFollowing={true}/>
           ))}
           </div>
         </DialogContent>

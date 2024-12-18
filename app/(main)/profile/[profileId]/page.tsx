@@ -2,7 +2,7 @@ import EditProfile from "@/components/main/profile/edit-profile";
 import { Badge } from "@/components/ui/badge";
 import { db } from "@/db/migrate";
 import { userTable } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { eq, notLike } from "drizzle-orm";
 import Image from "next/image";
 import Link from "next/link";
 import { FaGithub, FaLocationDot, FaTags } from "react-icons/fa6"
@@ -21,6 +21,7 @@ const user = await initialProfile()
   where: eq(userTable.id , profileId),
   with: { sessions : true, comments: true , posts: true}
  })
+ const users = await db.select().from(userTable).where(notLike(userTable.id , profileId))
  const githubUserName = profile?.githubId?.slice(19, profile?.githubId?.length);
  const skills = profile?.skills?.split(',');
  //@ts-ignore
@@ -59,6 +60,14 @@ const user = await initialProfile()
           <div className="flex gap-2 items-center"><FaGithub className="w-3 h-3"/> <Link href={profile.githubId}>{githubUserName}</Link> </div>
         )}
         <Separator className="bg-slate-300"/>
+        <div className="flex flex-col gap-2 h-full max-h-[15rem] overflow-y-scroll mb-5">
+          {users.map((user) => (
+            <Link href={`/profile/${user.id}`} key={user.id} className="flex gap-2 items-center bg-slate-100 dark:bg-zinc-800 rounded-lg p-2">
+              <Image src={user.image_url} alt="User Img" width={40} height={40} className="rounded-full object-contain"/>
+              <p>{user.name}</p>
+            </Link>
+          ))}
+        </div>
       </div>
      </div>
      <Tabs defaultValue="sessions" className="w-full">
@@ -69,12 +78,12 @@ const user = await initialProfile()
        <TabsContent value="sessions" className="flex flex-col">
        <div className="w-full h-max flex flex-col gap-3">
       { //@ts-ignore
-      (profile.sessions.length > 0)  && (<div className="w-full h-max grid items-center m-2 mt-5 gap-5 grid-cols-2">
+      profile?.sessions?.length > 0  && (<div className="w-full h-max grid items-center m-2 mt-5 gap-5 grid-cols-2">
         {profile?.sessions.map((session) => (
           <ProfileSessionCard key={session.id} session={session}/>
         ))}
       </div>)}
-      {profile?.sessions.length === 0 && (
+      {profile?.sessions?.length === 0 && (
         <div>No Sessions found</div>
       )}
      </div>

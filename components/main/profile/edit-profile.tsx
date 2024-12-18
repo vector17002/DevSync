@@ -61,7 +61,7 @@ const EditProfile = ( { profile } : {profile : any}) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-      <Button className='w-full px-4 dark:text-white dark:bg-black font-bold  hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black dark:border-slate-500 border-2'>
+      <Button className='w-full px-4 dark:text-white dark:bg-black font-bold  hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black dark:border-slate-500 dark:border-2'>
           Update Profile
       </Button>
       </DialogTrigger>
@@ -143,9 +143,7 @@ const EditProfile = ( { profile } : {profile : any}) => {
         </Form>
         <DialogFooter className="sm:justify-start">
         <Button type="button" variant="outline" className="w-max px-4 dark:text-white dark:bg-black hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black" onClick={form.handleSubmit(onSubmit)}>
-          <DialogClose>
               Update
-          </DialogClose>
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -15,8 +15,9 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation"
-import { createSessionAction } from "@/app/(main)/create-session/action"
+import { createSessionAction } from "@/app/(main)/session/action"
 import toast from "react-hot-toast"
+import { Dialog, DialogHeader, DialogTitle, DialogContent, DialogTrigger, DialogFooter, DialogClose } from "@/components/ui/dialog"
 
 const formSchema = z.object({
    name: z.string().min(2, {
@@ -48,8 +49,6 @@ const formSchema = z.object({
           details: "",
           githubRepo: "",
           skills: "",
-          // startAt: "",
-          // endAt: ""
         },
       })
      
@@ -67,8 +66,16 @@ const formSchema = z.object({
         router.refresh()
       }
     return(
+      <Dialog>
+        <DialogTrigger asChild className="hover:text-white hover:bg-black dark:bg-zinc-800 dark:hover:bg-black rounded-md p-2 w-max text-center text-base bg-gray-100 font-semibold">
+        <p>Create session</p>
+    </DialogTrigger>
+    <DialogContent className="sm:max-w-xl bg-white dark:bg-black">
+     <DialogHeader className="items-center">
+          <DialogTitle className="text-xl">Create session</DialogTitle>
+    </DialogHeader>
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 w-3/5 mt-10 mb-10">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 w-full">
         <FormField
           control={form.control}
           name="name"
@@ -124,9 +131,17 @@ const formSchema = z.object({
             </FormItem>
           )}
         />
-        <Button type="submit" className="px-4 rounded-xl dark:text-white dark:bg-black font-bold  hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black dark:border-slate-500 border-2">Submit</Button>
       </form>
     </Form>
+    <DialogFooter className="sm:justify-start">
+          <Button type="button" className="px-4 rounded-xl dark:text-white dark:bg-black font-bold  hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black dark:border-slate-500 border-2" onClick={form.handleSubmit(onSubmit)}>
+            <DialogClose>
+              Create
+            </DialogClose>
+          </Button>
+        </DialogFooter>
+    </DialogContent>
+    </Dialog>
     )
 }
 

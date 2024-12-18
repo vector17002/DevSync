@@ -1,12 +1,11 @@
 import { db } from "@/db/migrate";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import MultiCard from "@/components/main/card";
 import { Cover } from "@/components/ui/cover";
 import { SearchBar } from "./search";
 import { like } from "drizzle-orm";
 import { sessionTable } from "@/db/schema";
 import { unstable_noStore } from "next/cache";
+import SessionForm from "@/components/main/create-session/session-form";
 
 const DebugCohort = async ({ 
   searchParams
@@ -27,12 +26,10 @@ const DebugCohort = async ({
       <div className="flex flex-col w-full gap-8 items-center justify-center">
         <div className="flex flex-col justify-center items-center gap-8">
           <Cover className="text-4xl font-extrabold">Debug Cohort</Cover>
-<div className="flex flex-col text-md text-slate-600 justify-center items-center dark:text-slate-300"> Create or find a session, let other developers across the application <p>help you solve bugs and collab in your project.</p></div>
+<div className="flex flex-col text-md text-slate-600 justify-center items-center dark:text-slate-300"> Create or find a session, let other developers across the application <p>help you solve bugs and collaborate in your project.</p></div>
         </div>
         <div className="flex gap-5 w-3/5 items-center">
-        <Link href={'/create-session'}>
-        <Button className="w-full px-4 bg-zinc-100 dark:text-white dark:bg-zinc-600 font-bold  hover:bg-zinc-800 hover:text-white dark:hover:bg-white dark:hover:text-black dark:border-neutral-600">Create session</Button>
-        </Link>
+        <SessionForm/>
         <SearchBar/>
         </div>
       </div> 

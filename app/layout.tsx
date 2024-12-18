@@ -3,7 +3,6 @@ import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/theme-provider";
-import Navbar from "@/components/main/navbar";
 import NextTopLoader from 'nextjs-toploader';
 import{ Toaster } from 'react-hot-toast'
 
@@ -32,11 +31,7 @@ export default function RootLayout({
             attribute="class"
             defaultTheme="light"
             enableColorScheme>
-
-          {/* <Navbar/> */}
           <NextTopLoader/>
-          {/* <div className='main'>
-          </div> */}
           <main>
           {children}
           </main>

@@ -28,7 +28,7 @@ const DebugCohort = async ({
           <Cover className="text-4xl font-extrabold">Debug Cohort</Cover>
 <div className="flex flex-col text-md text-slate-600 justify-center items-center dark:text-slate-300"> Create or find a session, let other developers across the application <p>help you solve bugs and collaborate in your project.</p></div>
         </div>
-        <div className="flex gap-5 w-3/5 items-center">
+        <div className="flex gap-5 w-4/5 items-center justify-center">
         <SessionForm/>
         <SearchBar/>
         </div>

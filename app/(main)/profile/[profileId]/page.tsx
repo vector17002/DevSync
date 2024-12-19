@@ -13,6 +13,8 @@ import FollowButton from "@/components/main/profile/followButton";
 import { Separator } from "@/components/ui/separator";
 import FollowersFollowing from "@/components/main/profile/followersFollowing";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import CreateSessionCard from "@/components/main/profile/createSession";
+
 
 const Profile = async (props : { params : { profileId : string} }) => {
 const user = await initialProfile()
@@ -78,27 +80,24 @@ const user = await initialProfile()
        <TabsContent value="sessions" className="flex flex-col">
        <div className="w-full h-max flex flex-col gap-3">
       { //@ts-ignore
-      profile?.sessions?.length > 0  && (<div className="w-full h-max grid items-center m-2 mt-5 gap-5 grid-cols-2">
+      profile?.sessions && (
+      <div className="w-full h-max grid items-center m-2 mt-5 gap-5 grid-cols-2">
         {profile?.sessions.map((session) => (
           <ProfileSessionCard key={session.id} session={session}/>
         ))}
-      </div>)}
-      {profile?.sessions?.length === 0 && (
-        <div>No Sessions found</div>
-      )}
+        <CreateSessionCard/>
+      </div>
+    )}
      </div>
        </TabsContent>
        <TabsContent value="posts">
        <div className="w-full h-max flex flex-col gap-3">
        { //@ts-ignore
-      (profile?.posts.length > 0)  && (<div className="w-full h-max grid items-center m-2 mt-5 gap-5 grid-cols-2">
+      profile?.posts && (<div className="w-full h-max grid items-center m-2 mt-5 gap-5 grid-cols-2">
         {profile?.posts.map((session) => (
           <ProfileSessionCard key={session.id} session={session}/>
         ))}
       </div>)}
-      {profile?.posts.length === 0 && (
-        <div>No Posts found</div>
-      )}
      </div>
        </TabsContent>
      </Tabs>

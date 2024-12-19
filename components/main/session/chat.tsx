@@ -6,10 +6,8 @@ import {
     Chat,
     Channel,
     Window,
-    ChannelHeader,
     MessageList,
     MessageInput,
-    Thread,
   } from "stream-chat-react";
   import "stream-chat-react/dist/css/v2/index.css";
 
@@ -38,31 +36,41 @@ const ChatWindow = ({sessionId , user} : {sessionId : string , user : any}) => {
 
         setChannel(channel)
         setClient(client)
-       } 
-       init()
-       return () => {
+             } 
+             init()
+             return () => {
         client?.disconnectUser()
         client?.channel('messaging', sessionId).delete()
-       }
-}, [])
+             }
+      }, [])
 
-    if (!client) return <div className="w-full h-[35vh] bg-slate-100 dark:bg-zinc-950">     
-    </div>;
+          if (!client) return (
+          <div className="flex flex-col space-y-4 p-4">
+            {[...Array(5)].map((_, index) => (
+        <div key={index} className="flex items-center space-x-4 animate-pulse">
+          <div className="w-10 h-10 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+          <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-3/4"></div>
+        </div>
+            ))}
+          </div>
+          )
 
-    return (
-      <Chat client={client} customClasses={{
-        'messageList': 'h-[35vh] overflow-y-auto dark:bg-zinc-950 w-4/5 text-neutral-500',
-        'channel': 'dark:bg-zinc-950',
-      }}>
-        <Channel 
-        //@ts-ignore
-        channel={channel}>
-          <Window>
+          return (
+        <Chat client={client} customClasses={{
+          'messageList': 'h-[35vh] overflow-y-auto dark:bg-zinc-950 w-4/5 text-neutral-500',
+          'channel': 'dark:bg-zinc-950',
+          //@ts-ignore
+          'messageInput': 'dark:bg-zinc-950 dark:text-white'
+            }}>
+          <Channel 
+          //@ts-ignore
+          channel={channel}>
+            <Window>
             <MessageList />
             <MessageInput audioRecordingEnabled={true} />
-          </Window>
-        </Channel>
-      </Chat>
+            </Window>
+          </Channel>
+          </Chat>
     );
   };
   

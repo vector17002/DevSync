@@ -13,9 +13,8 @@ import { useEffect, useState } from 'react';
 import "@stream-io/video-react-sdk/dist/css/styles.css"
 import {generateToken } from '../../../app/(main)/session/[sessionId]/action';
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/button';
 import { BsPeople } from 'react-icons/bs';
-import { Dialog, DialogContent, DialogHeader, DialogTrigger } from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 
 const apiKey = process.env.GET_STREAM_API_KEY!;
 
@@ -48,7 +47,7 @@ const apiKey = process.env.GET_STREAM_API_KEY!;
       {client && call &&
       <StreamTheme className='w-full h-full'>
       <div className='w-full text-white -z-10'>
-      <StreamVideo client={client}>
+      <StreamVideo client={client} >
         <StreamCall call={call}>
           <div className='flex w-full flex-col'>
           <SpeakerLayout/>
@@ -66,7 +65,7 @@ const apiKey = process.env.GET_STREAM_API_KEY!;
               <BsPeople className="w-5 h-5"/>
         </DialogTrigger>
         <DialogContent className='bg-white dark:bg-zinc-900 w-full max-w-sm dark:text-white font-extralight'>
-          <CallParticipantsList onClose={() => {}}/>
+          <CallParticipantsList  onClose={() => {}}/>
         </DialogContent>
       </Dialog>
           </div>

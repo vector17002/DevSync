@@ -1,5 +1,5 @@
 "use client"
-
+import { Dialog, DialogHeader, DialogTitle, DialogContent, DialogTrigger, DialogFooter, DialogClose } from "@/components/ui/dialog"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation"
 import { createSessionAction } from "@/app/(main)/session/action"
 import toast from "react-hot-toast"
-import { Dialog, DialogHeader, DialogTitle, DialogContent, DialogTrigger, DialogFooter, DialogClose } from "@/components/ui/dialog"
+import { PlusCircleIcon } from "lucide-react"
 
 const formSchema = z.object({
    name: z.string().min(2, {
@@ -40,7 +40,8 @@ const formSchema = z.object({
       message: "Skills cannot be empty"
     }),
 })
- const SessionForm = () => {    
+
+const CreateSessionCard = () => {
     const router = useRouter()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -64,12 +65,15 @@ const formSchema = z.object({
         )
         router.refresh()
       }
-    return(
-      <Dialog>
-        <DialogTrigger asChild className="hover:text-white hover:bg-black dark:bg-zinc-800 dark:hover:bg-black rounded-md p-2 w-max text-center text-base bg-gray-100 font-semibold">
-        <p>Create session</p>
-    </DialogTrigger>
-    <DialogContent className="sm:max-w-xl bg-white dark:bg-black dark:border-zinc-700">
+  return (
+    <Dialog>
+    <DialogTrigger asChild>
+    <div className="w-full h-full flex flex-col gap-2 items-center justify-center p-4 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-zinc-700">
+        <p className="text-lg font-semibold text-gray-500 dark:text-gray-300">Create New Session</p>
+        <PlusCircleIcon className="w-10 h-10 text-gray-500 dark:text-gray-300"/>
+      </div>
+</DialogTrigger>
+<DialogContent className="sm:max-w-xl bg-white dark:bg-black dark:border-zinc-700">
      <DialogHeader className="items-center">
           <DialogTitle className="text-xl">Create session</DialogTitle>
     </DialogHeader>
@@ -140,8 +144,8 @@ const formSchema = z.object({
           </Button>
         </DialogFooter>
     </DialogContent>
-    </Dialog>
-    )
+      </Dialog>
+  )
 }
 
-export default SessionForm
+export default CreateSessionCard

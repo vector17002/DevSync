@@ -73,7 +73,7 @@ const CreateSessionCard = () => {
         <PlusCircleIcon className="w-10 h-10 text-gray-500 dark:text-gray-300"/>
       </div>
 </DialogTrigger>
-<DialogContent className="sm:max-w-xl bg-white dark:bg-black dark:border-zinc-700">
+<DialogContent className="sm:max-w-2xl bg-white dark:bg-black dark:border-zinc-700">
      <DialogHeader className="items-center">
           <DialogTitle className="text-xl">Create session</DialogTitle>
     </DialogHeader>

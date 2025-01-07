@@ -133,7 +133,7 @@ const formSchema = z.object({
       </form>
     </Form>
     <DialogFooter className="sm:justify-start">
-          <Button type="button" className="px-4 rounded-xl dark:text-white dark:bg-black font-bold  hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black dark:border-slate-500 border-2" onClick={form.handleSubmit(onSubmit)}>
+          <Button type="button" className="px-4 rounded-xl dark:text-white dark:bg-black font-bold border-0 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black dark:border-slate-500 dark:border-2" onClick={form.handleSubmit(onSubmit)}>
             <DialogClose>
               Create
             </DialogClose>

@@ -30,13 +30,15 @@ export const sessionTable = pgTable("Sessions" , {
    endedAt: date("endedAt"),
 })
 
-export const postTable = pgTable("Posts" , {
+export const postTable = pgTable("Posts", {
    id: uuid("id").primaryKey().notNull().defaultRandom(),
-   title: varchar("title",{length: 255}).notNull(),
-   authorId: varchar("authorId").references(() => userTable.id, { onDelete: "cascade"}).notNull(),
+   title: varchar("title", { length: 255 }).notNull(),
+   authorId: varchar("authorId").references(() => userTable.id, { onDelete: "cascade" }).notNull(),
    content: text("content").notNull().default(""),
    postedAt: timestamp("postedAt").defaultNow(),
-})
+   category: varchar("category").$type<"bug" | "blog" | "project-pitch">().notNull(),
+   likes: varchar("likes").array().notNull().default(sql`ARRAY[]::varchar[]`),
+ })
 
 export const commentsTable = pgTable("Comments",{
    id: uuid("id").primaryKey().notNull().defaultRandom(),
@@ -66,7 +68,7 @@ export const userRelations = relations(userTable ,  ({many}) => (
    {
       sessions: many(sessionTable),
       posts : many(postTable),
-      comments : many(commentsTable)
+      comments : many(commentsTable),
    }
 ))
 
@@ -77,13 +79,13 @@ export const sessionRelations = relations(sessionTable,({one}) => ({
    })
 }))
 
-export const postRelations = relations(postTable, ({one , many}) => ({
-    authorId : one(userTable, {
-      fields: [postTable.authorId],
-      references: [userTable.id]
-    }),
-    comments: many(commentsTable)
-}))
+export const postRelations = relations(postTable, ({ one, many }) => ({
+   authorId: one(userTable, {
+     fields: [postTable.authorId],
+     references: [userTable.id]
+   }),
+   comments: many(commentsTable),
+ }));
 
 export const commentRelations = relations(commentsTable, ({one}) => ({
    parentId: one(commentsTable,{

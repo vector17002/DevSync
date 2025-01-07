@@ -70,7 +70,7 @@ const items = [
   {
     title: "Join a Developer Community, Made by Developers for Developers",
     description: "Embark on exciting journeys and thrilling discoveries.",
-    header: <Skeleton />,
+    header: <Skeleton/>,
     icon: <IconBoxAlignRightFilled className="h-4 w-4 text-neutral-500" />,
   },
 ];

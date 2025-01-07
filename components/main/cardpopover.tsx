@@ -13,8 +13,6 @@ import { AlertDialogHeader } from "../ui/alert-dialog"
 import { deleteSession } from "@/app/(main)/session/[sessionId]/action"
 import { ComboboxDemo } from "./combobox"
 import { useRouter } from "next/navigation"
-import Link from "next/link"
-import { Button } from "../ui/button"
 
 const CardPopover = ({session} : {session : any}) => {
 const router = useRouter()

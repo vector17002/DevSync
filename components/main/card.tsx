@@ -21,7 +21,7 @@ const MultiCard = async ({ data } : {data  : SessionTableType}) => {
 const user = await initialProfile();
 const tags = data.skills?.toLowerCase().split(',')
   return (
-<Card className="min-w-[22rem] max-w-[22rem] h-[20rem] flex flex-col justify-between dark:border-neutral-600">
+<Card className="min-w-[22rem] max-w-[22rem] h-[20rem] flex flex-col justify-between border-neutral-200 dark:border-neutral-600">
   <CardHeader className="h-2">
     <CardTitle className="flex flex-row justify-between mb-2">
     <p className="text-xl font-bold">{data.name}</p>

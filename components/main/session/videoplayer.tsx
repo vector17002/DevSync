@@ -9,18 +9,19 @@ import {
     StreamVideo,
     StreamVideoClient,
   } from '@stream-io/video-react-sdk';
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import "@stream-io/video-react-sdk/dist/css/styles.css"
 import {generateToken } from '../../../app/(main)/session/[sessionId]/action';
 import { useRouter } from 'next/navigation';
-import { BsPeople } from 'react-icons/bs';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Users } from 'lucide-react';
 
 const apiKey = process.env.GET_STREAM_API_KEY!;
 
-  const VideoPlayer = ({sessionId , user} : {sessionId : string , user : any}) => {
+  const VideoPlayer = ({sessionId , user, children} : {sessionId : string , user : any, children ?: ReactNode}) => {
     const [client, setClient] = useState<StreamVideoClient | null>(null)
     const [call, setCall] = useState<Call | null>(null)
+    
     const router = useRouter()
   useEffect(() => {
     const client = new StreamVideoClient({ 
@@ -60,14 +61,17 @@ const apiKey = process.env.GET_STREAM_API_KEY!;
           onClose={() => setShowParticipants(!showParticipants)}/>
           </div>)}
          */}
-        <Dialog>
-        <DialogTrigger className='dark:text-black dark:bg-white text-white bg-black hover:text-black dark:hover:text-white dark:hover:bg-black rounded-full p-2'>
-              <BsPeople className="w-5 h-5"/>
-        </DialogTrigger>
-        <DialogContent className='bg-white dark:bg-zinc-900 w-full max-w-sm dark:text-white font-extralight'>
+        <Popover>
+        <PopoverTrigger className='dark:text-black dark:bg-white text-white bg-black hover:text-black dark:hover:text-white dark:hover:bg-black rounded-full p-2'>
+              <Users className="w-5 h-5"/>
+        </PopoverTrigger>
+        <PopoverContent asChild>
+          <div className='flex bg-inherit text-neutral-500 w-max'>
           <CallParticipantsList  onClose={() => {}}/>
-        </DialogContent>
-      </Dialog>
+          </div>
+        </PopoverContent>
+      </Popover>
+       {/* {isMeetingOwner && (<Button className='w-max bg-red-500 h-full'>End Call for everyone</Button>)} */}
           </div>
          </div>
         </StreamCall>

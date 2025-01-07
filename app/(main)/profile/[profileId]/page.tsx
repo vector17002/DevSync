@@ -14,6 +14,7 @@ import { Separator } from "@/components/ui/separator";
 import FollowersFollowing from "@/components/main/profile/followersFollowing";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CreateSessionCard from "@/components/main/profile/createSession";
+import CreatePostCard from "@/components/main/profile/createPostCard";
 
 
 const Profile = async (props : { params : { profileId : string} }) => {
@@ -97,6 +98,7 @@ const user = await initialProfile()
         {profile?.posts.map((session) => (
           <ProfileSessionCard key={session.id} session={session}/>
         ))}
+        <CreatePostCard/>
       </div>)}
      </div>
        </TabsContent>

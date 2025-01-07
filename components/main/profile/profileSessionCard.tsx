@@ -16,7 +16,7 @@ import CardPopover from "../cardpopover"
 const ProfileSessionCard = async ({session} : {session : any}) => {
   const user = await initialProfile()
   return (
-    <Card className="w-full h-[12rem] flex flex-col justify-between dark:border-neutral-600">
+    <Card className="w-full h-[12rem] flex flex-col justify-between border-neutral-200 dark:border-neutral-600">
   <CardHeader className="h-max">
     <CardTitle className="flex flex-row justify-between mb-2"><p className="text-lg font-bold">{session.name}</p>
     <div className="flex items-center gap-2">

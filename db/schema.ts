@@ -110,3 +110,4 @@ export const testimonialRelations = relations(testimonialsTable, ({many}) => ({
 // TYPES
 export type UserTableType = typeof userTable.$inferInsert
 export type SessionTableType = typeof sessionTable.$inferInsert
+export type PostTableType = typeof postTable.$inferInsert

@@ -15,6 +15,7 @@ import FollowersFollowing from "@/components/main/profile/followersFollowing";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CreateSessionCard from "@/components/main/profile/createSession";
 import CreatePostCard from "@/components/main/profile/createPostCard";
+import ProfilePostCard from "@/components/main/profile/profilePostCard";
 
 
 const Profile = async (props : { params : { profileId : string} }) => {
@@ -95,8 +96,8 @@ const user = await initialProfile()
        <div className="w-full h-max flex flex-col gap-3">
        { //@ts-ignore
       profile?.posts && (<div className="w-full h-max grid items-center m-2 mt-5 gap-5 grid-cols-2">
-        {profile?.posts.map((session) => (
-          <ProfileSessionCard key={session.id} session={session}/>
+        {profile?.posts.map((post) => (
+          <ProfilePostCard post={post} key={post.id}/>
         ))}
         <CreatePostCard/>
       </div>)}

@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation"
-// import { createPostAction } from "@/app/(main)/post/action"
+import { createPostAction } from "@/app/(main)/post/action"
 import toast from "react-hot-toast"
 import { PlusCircleIcon } from "lucide-react"
 
@@ -102,13 +102,13 @@ const CreatePostCard = () => {
               control={form.control}
               name="category"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="flex flex-col">
                   <FormLabel className="font-semibold text-lg">Category</FormLabel>
-                  <FormControl className="text-slate-500 dark:text-slate-300">
-                    <select {...field} className="rounded-xl">
+                  <FormControl className="text-slate-500 dark:text-slate-300 dark:bg-neutral-700 w-max text-sm"> 
+                    <select {...field} className="py-1 px-2 bg-neutral-200 rounded-sm">
                       <option value="bug">Bug</option>
                       <option value="blog">Blog</option>
-                      <option value="project-pitch">Project Pitch</option>
+                      <option value="project-pitch">Project</option>
                     </select>
                   </FormControl>
                   <FormMessage className="text-rose-400" />

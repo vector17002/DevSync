@@ -14,6 +14,21 @@ import { deleteSession } from "@/app/(main)/session/[sessionId]/action"
 import { ComboboxDemo } from "./combobox"
 import { useRouter } from "next/navigation"
 
+const frameworks = [
+  {
+    value: "on-going",
+    label: "Live",
+  },
+  {
+    value: "compeleted",
+    label: "Done",
+  },
+  {
+    value: "not-completed",
+    label: "Pause",
+  },
+]
+
 const CardPopover = ({session} : {session : any}) => {
 const router = useRouter()
 return (
@@ -47,7 +62,7 @@ return (
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-    <ComboboxDemo sessionId={session.id} currStatus={session.status}/>
+    <ComboboxDemo sessionId={session.id} currStatus={session.status} values={frameworks}/>
   </PopoverContent>
 </Popover>
   )

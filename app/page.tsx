@@ -10,7 +10,7 @@ export default function Home() {
       <Navbar />
       <Hero/>
       <BentoGridDemo/>
-      <Testimonials/>
+      {/* <Testimonials/> */}
       <FAQ/>
       <Footer/>
     </main>

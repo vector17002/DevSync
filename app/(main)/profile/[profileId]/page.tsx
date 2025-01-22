@@ -15,6 +15,7 @@ import FollowersFollowing from "@/components/main/profile/followersFollowing";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CreateSessionCard from "@/components/main/profile/createSession";
 import CreatePostCard from "@/components/main/profile/createPostCard";
+import ProfilePostCard from "@/components/main/profile/profilePostCard";
 
 
 const Profile = async (props : { params : { profileId : string} }) => {
@@ -76,7 +77,7 @@ const user = await initialProfile()
      <Tabs defaultValue="sessions" className="w-full">
        <TabsList className="w-full justify-start gap-3">
          <TabsTrigger value="sessions" className="text-lg font-semibold glassmorphism p-2 rounded-none">Sessions</TabsTrigger>
-         <TabsTrigger value="posts" className="text-lg font-semibold glassmorphism p-2 rounded-none">Posts</TabsTrigger>
+         {/* <TabsTrigger value="posts" className="text-lg font-semibold glassmorphism p-2 rounded-none">Posts</TabsTrigger> */}
        </TabsList>
        <TabsContent value="sessions" className="flex flex-col">
        <div className="w-full h-max flex flex-col gap-3">
@@ -86,22 +87,27 @@ const user = await initialProfile()
         {profile?.sessions.map((session) => (
           <ProfileSessionCard key={session.id} session={session}/>
         ))}
-        <CreateSessionCard/>
+        {
+        //@ts-ignore
+        user.id === profileId && (
+        <CreateSessionCard/>)}
       </div>
     )}
      </div>
        </TabsContent>
-       <TabsContent value="posts">
+       {/* <TabsContent value="posts">
        <div className="w-full h-max flex flex-col gap-3">
        { //@ts-ignore
       profile?.posts && (<div className="w-full h-max grid items-center m-2 mt-5 gap-5 grid-cols-2">
-        {profile?.posts.map((session) => (
-          <ProfileSessionCard key={session.id} session={session}/>
+        {profile?.posts.map((post) => (
+          <ProfilePostCard post={post} key={post.id}/>
         ))}
-        <CreatePostCard/>
+        { //@ts-ignore
+        user.id === profileId && ( <CreatePostCard/>)}
+       
       </div>)}
      </div>
-       </TabsContent>
+       </TabsContent> */}
      </Tabs>
     </main>
   )

@@ -43,7 +43,7 @@ const items = [
     icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
   },
   {
-    title: "Debug Faster with Expert Help",
+    title: "Debug Faster with help of others",
     description: "Discover the beauty of thoughtful and functional design.",
     header: <Skeleton />,
     icon: <IconSignature className="h-4 w-4 text-neutral-500" />,

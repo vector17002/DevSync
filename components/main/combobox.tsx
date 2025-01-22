@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client"
 
 import * as React from "react"
@@ -20,22 +21,9 @@ import {
 import { setStatusForSession } from "@/app/(main)/session/[sessionId]/action"
 import toast from "react-hot-toast"
 
-const frameworks = [
-  {
-    value: "on-going",
-    label: "Live",
-  },
-  {
-    value: "compeleted",
-    label: "Done",
-  },
-  {
-    value: "not-completed",
-    label: "Pause",
-  },
-]
 
-export function ComboboxDemo({sessionId , currStatus} : {sessionId: string , currStatus: string }) {
+
+export function ComboboxDemo({sessionId , currStatus , values} : {sessionId: string , currStatus: string , values : unknown  }) {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState(currStatus)
 
@@ -47,7 +35,7 @@ export function ComboboxDemo({sessionId , currStatus} : {sessionId: string , cur
           aria-expanded={open}
           className="w-full"
         >
-          {currStatus ? frameworks.find((f) => f.value === currStatus)?.label : "Set Status"}
+          {currStatus ? values.find((f) => f.value === currStatus)?.label : "Set Status"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -56,10 +44,10 @@ export function ComboboxDemo({sessionId , currStatus} : {sessionId: string , cur
           <CommandInput placeholder="Search status" />
           <CommandList>
             <CommandGroup>
-              {frameworks.map((framework) => (
+              {values.map((val) => (
                 <CommandItem
-                  key={framework.value}
-                  value={framework.value}
+                  key={val.value}
+                  value={val.value}
                   onSelect={async (currentValue) => {
                    toast.promise(
                     //@ts-ignore
@@ -77,10 +65,10 @@ export function ComboboxDemo({sessionId , currStatus} : {sessionId: string , cur
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === framework.value ? "opacity-100" : "opacity-0"
+                      value === val.value ? "opacity-100" : "opacity-0"
                     )}
                   />
-                  {framework.label}
+                  {val.label}
                 </CommandItem>
               ))}
             </CommandGroup>

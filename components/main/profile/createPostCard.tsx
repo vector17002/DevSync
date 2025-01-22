@@ -71,6 +71,23 @@ const CreatePostCard = () => {
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 w-full">
+          <FormField
+              control={form.control}
+              name="category"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <FormLabel className="font-semibold text-lg">Category</FormLabel>
+                  <FormControl className="text-slate-800 dark:text-slate-100 dark:bg-neutral-700 w-max text-sm"> 
+                    <select {...field} className="py-1 px-2 bg-neutral-200 rounded-sm">
+                      <option value="bug">Bug</option>
+                      <option value="blog">Blog</option>
+                      <option value="project-pitch">Project</option>
+                    </select>
+                  </FormControl>
+                  <FormMessage className="text-rose-400" />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="title"
@@ -98,23 +115,7 @@ const CreatePostCard = () => {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="category"
-              render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel className="font-semibold text-lg">Category</FormLabel>
-                  <FormControl className="text-slate-500 dark:text-slate-300 dark:bg-neutral-700 w-max text-sm"> 
-                    <select {...field} className="py-1 px-2 bg-neutral-200 rounded-sm">
-                      <option value="bug">Bug</option>
-                      <option value="blog">Blog</option>
-                      <option value="project-pitch">Project</option>
-                    </select>
-                  </FormControl>
-                  <FormMessage className="text-rose-400" />
-                </FormItem>
-              )}
-            />
+            
             <DialogFooter>
               <Button type="submit" className="bg-blue-500 text-white hover:bg-blue-600 rounded-lg">
                 Create Post

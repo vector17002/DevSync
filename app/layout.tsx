@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/theme-provider";
 import NextTopLoader from 'nextjs-toploader';
 import{ Toaster } from 'react-hot-toast'
+import { NotificationProvider } from "@/lib/provider";
 
 const inter = Open_Sans({ subsets: ["latin"] });
 
@@ -22,7 +23,7 @@ export default function RootLayout({
     <ClerkProvider>
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/assets/Logo.png"/>
+        <link rel="icon" href="/assets/Logo.jpeg"/>
       </head>
       <body className={inter.className} >
       <Toaster position="top-center"
@@ -33,7 +34,9 @@ export default function RootLayout({
             enableColorScheme>
           <NextTopLoader/>
           <main>
+           <NotificationProvider>
           {children}
+          </NotificationProvider>
           </main>
         </ThemeProvider>
         </body>

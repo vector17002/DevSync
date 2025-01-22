@@ -5,7 +5,6 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/theme-provider";
 import NextTopLoader from 'nextjs-toploader';
 import{ Toaster } from 'react-hot-toast'
-import { NotificationProvider } from "@/lib/provider";
 
 const inter = Open_Sans({ subsets: ["latin"] });
 
@@ -34,9 +33,7 @@ export default function RootLayout({
             enableColorScheme>
           <NextTopLoader/>
           <main>
-           <NotificationProvider>
           {children}
-          </NotificationProvider>
           </main>
         </ThemeProvider>
         </body>

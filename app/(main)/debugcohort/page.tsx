@@ -6,6 +6,7 @@ import { like } from "drizzle-orm";
 import { sessionTable } from "@/db/schema";
 import { unstable_noStore } from "next/cache";
 import SessionForm from "@/components/main/create-session/session-form";
+import CreateSessionCard from "@/components/main/profile/createSession";
 
 const DebugCohort = async ({ 
   searchParams
@@ -37,6 +38,7 @@ const DebugCohort = async ({
       {sessions.map((session) => (
       <MultiCard key={session.id} data={session} />
       ))}
+      <CreateSessionCard/>
     </div>
     </div>
   )

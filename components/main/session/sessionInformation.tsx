@@ -30,7 +30,7 @@ const SessionInformation = async ({session} : {session : any}) => {
       <Badge className="bg-black text-white p-1 px-2 rounded-xl hover:bg-white hover:text-black dark:bg-white dark:text-black" >{tag}</Badge></Link>
     ))}
     </div>
-    <Invite url={`http://localhost:3000/session/${session.id}`}/>
+    <Invite url={`https://code-guild-lilac.vercel.app/session/${session.id}`}/>
     { session.githubRepo !== " " &&
    (<Link 
     //@ts-ignore

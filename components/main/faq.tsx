@@ -7,7 +7,7 @@ import {
   
   export function FAQ() {
     return (
-        <div className="flex flex-col w-full h-full gap-10 justify-center items-center mt-10 mb-10" id="faq">
+        <div className="flex flex-col w-full h-full gap-10 justify-center items-center mt-20 mb-10" id="faq">
             <p className="font-semibold text-2xl md:text-5xl">Frequently Asked Questions</p>
       <Accordion type="single" collapsible className="w-full max-w-2xl">
       {/* <AccordionItem value="item-1">

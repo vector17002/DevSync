@@ -1,10 +1,10 @@
-# DevSync
+# Code Guild
 
 ## 🚀 Project Overview
-DevSync is a powerful and efficient development synchronization tool designed to streamline workflows and enhance team collaboration. Built using cutting-edge technologies, this project ensures high performance, scalability, and ease of use.
+Code Guild is a powerful and efficient development synchronization tool designed to streamline workflows and enhance team collaboration. Built using cutting-edge technologies, this project ensures high performance, scalability, and ease of use.
 
 ## 🛠️ Tech Stack
-DevSync leverages the following technologies to deliver a seamless development experience:
+Code Guild leverages the following technologies to deliver a seamless development experience:
 
 ### **Backend**
 - **Next.js** – A React framework used for backend functionality, providing API routes and server-side processing.
@@ -39,7 +39,7 @@ DevSync leverages the following technologies to deliver a seamless development e
 ## 📌 Getting Started
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/vector17002/DevSync.git
+   git clone https://github.com/vector17002/Code-Guild.git
    cd DevSync
    ```
 2. **Install Dependencies:**

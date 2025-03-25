@@ -40,7 +40,7 @@ Code Guild leverages the following technologies to deliver a seamless developmen
 1. **Clone the Repository:**
    ```bash
    git clone https://github.com/vector17002/Code-Guild.git
-   cd DevSync
+   cd Code-Guild
    ```
 2. **Install Dependencies:**
    ```bash

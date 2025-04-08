@@ -9,8 +9,8 @@ import{ Toaster } from 'react-hot-toast'
 const inter = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Dev Sync",
-  description: "Find amazing debuggers and collaborators for your projects and interact with them through video meet",
+  title: "Code Guild",
+  description: "Find amazing debuggers and collaborators for your projects and interact with them through video and audio calls.",
 };
 
 export default function RootLayout({
